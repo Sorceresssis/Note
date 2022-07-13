@@ -1,7 +1,5 @@
-# C++ 语法易错
+# 二进制文件输入输出
 
----
-* #### 二进制文件输入输出
 ```cpp
 #include <iostream>
 #include <string>
@@ -10,37 +8,40 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
     //c++版
-	fstream Output("F:\\Desktop\\Output.txt");
-	fstream Input("F:\\Desktop\\Input.txt");
-	
-	string a;
-	getline(Input, a);  //一行一读
-	cout << a << endl;
-	Output << "Hello World!" << endl;
+    fstream Output("F:\\Desktop\\Output.txt");v
+    fstream Input("F:\\Desktop\\Input.txt");
+
+    string a;
+    getline(Input, a);  //一行一读
+    cout << a << endl;
+    Output << "Hello World!" << endl;
 
     //c版
         FILE* Output, Input;
         errno_t err_Out = fopen_s(&Output, "F:\\Desktop\\Output.txt", "w");
         errno_t err_In = fopen_s(&Input, "F:\\Desktop\\Input.txt", "r");
-    	if (err_Out == 0) {
-		    cout << "文件打开成功" << endl;
-		    for (int i = 0; i < 10; i++) {
-			    fprintf(Output, " %d" + !i, Array[i]);
-		    }
-	    }
+        if (err_Out == 0) {
+            cout << "文件打开成功" << endl;
+            for (int i = 0; i < 10; i++) {
+                fprintf(Output, " %d" + !i, Array[i]);
+            }
+        }
         if (err_In == 0) {
-		    cout << "文件打开成功" << endl;
-		    for (int i = 0; i < 10; i++) {
-			fscanf_s(Input, "%d", &Array[i], 1);
-		}
-	    }
-	return 0;
+            cout << "文件打开成功" << endl;
+            for (int i = 0; i < 10; i++) {
+                fscanf_s(Input, "%d", &Array[i], 1);
+            }
+        }
+    return 0;
 }
 ```
+
 ---
 
-* #### const
+# const
+
 > const修饰指针 const修饰右边的东西。
+
 ```cpp
 const int* p = &a;  //p指向一个const修饰的常量;
 p = &b; //p的指向可以更改。
@@ -53,13 +54,15 @@ p = &b; //p的指向不能更改。
 const int* const p = &a;
 //const修饰的p指向一个const修饰的常量;
 ```
+
 > const 修饰函数。
+
 ```cpp
 // const 修饰函数不可更改成员属性， 本质是修饰const this指针。
 class Person{
     public:
-    	int a;
-    	mutable int b;  //mutable关键字在任意函数都可以改。
+        int a;
+        mutable int b;  //mutable关键字在任意函数都可以改。
         void func0(){
             a = 10; //正确
             b = 10; //正确
@@ -78,19 +81,24 @@ P.func0();  // 错误。
 p.func1();  // 正确。
 // 因为 p 为const修饰对象，p的成员不可更改，但是func0可以修改 p 成员，造成矛盾。
 ```
+
 ---
 
-* #### 局部变量
+# 局部变量
+
 > 不要返回局部变量地址，局部变量在栈区。出栈时地址不合法。
+
 ```cpp
 int* fun() {
     int a;
     return &a;
 }
 ```
+
 ---
 
-* #### new函数
+# new函数
+
 ```cpp
 int* a = new int(10);   //初始化为10
 int* a = new int[10];   //申请10个int空间。
@@ -101,14 +109,17 @@ void* operator new(){
 void operator delete(void* t){
 }
 ```
+
 ---
 
-* #### 引用
+# 引用
+
 > 引用本质是一个常量指针。type* const refer
-  引用必须初始化；
-  引用不可更改
+> 引用必须初始化；
+> 引用不可更改
 
 > 如果函数的返回值是引用,则这个函数可以作为左值。
+
 ```cpp
 int& fun(int& refer) {
     return refer;
@@ -123,9 +134,11 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 ```
+
 ---
 
-* #### enum枚举
+# enum枚举
+
 ```cpp
 enum Color//颜色
 {
@@ -137,9 +150,11 @@ enum Color//颜色
 enum Color clr = GREEN;//只能用枚举常量给枚举变量赋值，才不会出现类型的差异
 clr = 4;
 ```
+
 ---
 
-* #### union联合
+# union联合
+
 ```cpp
 union Un
 {
@@ -150,10 +165,13 @@ union Un un;//联合变量的定义
 printf("%d\n", sizeof(un));
 //输出结果为4，由于char和int类型共用同一块空间
 ```
+
 ---
 
-* #### class 类
+# class 类 封装
+
 > 权限关键字
+
 ```cpp
 class C {
     C(){    //构造函数
@@ -173,25 +191,26 @@ C() //类名+小括号 = 匿名对象。下一行就释放
 ```
 
 > 构造函数
+
 ```cpp
 class Person {
     public:
-	    Person(string T_name, int T_age) {  //有参构造
-		    name = T_name;
-		    age = T_age;
-	    }
+        Person(string T_name, int T_age) {  //有参构造
+            name = T_name;
+            age = T_age;
+        }
         Person(string T_name, int T_age): name(T_Name), age(T_age){.
             //初始化列表
         }
         Person(const Person& T) {   //拷贝构造
-		    name = T.name;
-		    age = T.age;
-	    }
+            name = T.name;
+            age = T.age;
+        }
         ~Person() {
-	    }
+        }
     private:
-	    string name;
-	    int age;
+        string name;
+        int age;
 };
 Person damo0("何骏涛", 20);
 Person damo1 = damo0;
@@ -199,6 +218,7 @@ Person damo2(damo0);
 ```
 
 > 编译器自动给class提供的函数
+
 ```cpp
 /*
 编译器会自动给class提供无参构造函数、拷贝构造函数、析构函数。
@@ -208,6 +228,7 @@ Person damo2(damo0);
 ```
 
 > 浅拷贝与深拷贝。
+
 ```cpp
 //自动生成的构造函数的执行浅拷贝。
 class Person{
@@ -245,22 +266,28 @@ Person(const Person& T){
 }
 
 ```
+
 ---
 
-* #### static 静态成员
+# static 静态成员
+
 ---
 
-* #### this 指针
+# this 指针
+
 > 链式编程
+
 ```cpp
 a.fun().fun().fun();    //链式编程的样式.
 //原理
 person& func{
-    
+  
     return *this;
 }
 ```
+
 > 空指针可以访问成员变量和函数。
+
 ```cpp
 class person {
     public:
@@ -285,105 +312,111 @@ if(this == NULL) {
 } 
 
 ```
+
 ---
 
-* #### 运算符重载
+# 运算符重载
+
 > operator= 赋值运算符重载
+
 ```cpp
 /*
 默认构造、默认析构、拷贝构造、operator=是编译器自动生成的四个函数。
 重点是深拷贝与浅拷贝 在浅拷贝后析构函数对相同地址的堆区内存重复释放
 */
 class Person {
-	friend ostream& operator<< (ostream& cout, const Person& T);
-	friend class comp;
+    friend ostream& operator<< (ostream& cout, const Person& T);
+    friend class comp;
 public:
-	Person() {		//默认构造
-		height = NULL;
-	}
-	Person(int T_height) {		//有参构造
-		height = new int(T_height);
-	}
-	Person(const Person& T) {		//拷贝构造，深拷贝。
-		height = new int(*T.height);
-	}
-	~Person() {
-		delete[] height;
-	}
-	Person& operator= (const Person& T) {	//赋值构造，深拷贝。
-		if (height == NULL) {
-			height = new int(*T.height);
-		}
-		else {
-			*height = *T.height;
-		}
-		return *this;
-	}
-	Person& operator++() {	//前置递增运算符， ++i;
-		(*height)++;
-		return *this;
-	}
-	Person operator++(int) {	//后置递增运算符， i++;
-		Person tmp(*height);
-		(* height)++;
-		return tmp;
-	}
-	bool operator==(const Person& T) {
-		return *height == *T.height;
-	}
-	bool operator!= (const Person& T) {
-		return *height != *T.height;
-	}
-	bool operator<(const Person& T) {	//从小到大。
-		return *height < *T.height;
-	}
-	//bool operator<(const Person& T) {	//从大到小。
-	//	return *height > *T.height;
-	//}
-	bool operator>(const Person& T) {
-		return *height > *T.height;
-	}
+    Person() {      //默认构造
+        height = NULL;
+    }
+    Person(int T_height) {      //有参构造
+        height = new int(T_height);
+    }
+    Person(const Person& T) {       //拷贝构造，深拷贝。
+        height = new int(*T.height);
+    }
+    ~Person() {
+        delete[] height;
+    }
+    Person& operator= (const Person& T) {   //赋值构造，深拷贝。
+        if (height == NULL) {
+         height = new int(*T.height);
+     }
+     else {
+      *height = *T.height;
+     }
+  return *this;
+ }
+ Person& operator++() { //前置递增运算符， ++i;
+  (*height)++;
+  return *this;
+ }
+ Person operator++(int) { //后置递增运算符， i++;
+  Person tmp(*height);
+  (* height)++;
+  return tmp;
+    }
+    bool operator==(const Person& T) {
+  return *height == *T.height;
+ }
+ bool operator!= (const Person& T) {
+  return *height != *T.height;
+ }
+ bool operator<(const Person& T) { //从小到大。
+  return *height < *T.height;
+ }
+ //bool operator<(const Person& T) { //从大到小。
+ // return *height > *T.height;
+ //}
+ bool operator>(const Person& T) {
+  return *height > *T.height;
+ }
 private:
-	int* height;
+ int* height;
 };
-ostream& operator<< (ostream& cout, const Person& T) {	//左移运算符
-	cout << *T.height;
-	return cout;
+ostream& operator<< (ostream& cout, const Person& T) { //左移运算符
+ cout << *T.height;
+ return cout;
 }
 class comp {
 public:
-	bool operator()(const Person& S, const Person& T) {			//函数调用运算符，仿函数。
-		return *S.height < *T.height;
-	}
+ bool operator()(const Person& S, const Person& T) {   //函数调用运算符，仿函数。
+  return *S.height < *T.height;
+ }
 };
 
 void test() {
-	Person p1(10), p2;
-	p2 = p1;
-	p2++;
-	cout << (p1 < p2) << endl;
-	cout << p1 << ' ' << p2 << endl;
+ Person p1(10), p2;
+ p2 = p1;
+ p2++;
+ cout << (p1 < p2) << endl;
+ cout << p1 << ' ' << p2 << endl;
 }
 ```
+
 ---
 
-* #### 继承
->语法
+# 继承
+
+> 语法
+
 ```cpp
 class My : public Person
 //class 子类(派生) : 继承方式 父类(基类)
 
 class father{
-	public:
-		int a;
-	protected:
-		int b;
-	private:
-		int c;
+ public:
+  int a;
+ protected:
+  int b;
+ private:
+  int c;
 }
 class son : public father {
-	public:
-		int a;
+ public:
+  int a;
 }
 son s;
 cout << sizeof(s) << endl;
@@ -397,5 +430,147 @@ cout << sizeof(s) << endl;
 */
 
 //父子类成员同名，默认为子类。
-cout << s.a << ' ' << s.father::a << endl;;
+cout << s.a << ' ' << s.father::a << endl;
+```
+
+---
+
+> 菱形继承
+
+```cpp
+class a{
+ int data;
+}
+class b : virtual public a{
+}
+class c : virtual public a{
+}
+class d ：public a, public c {
+}
+
+//实现原理。
++--- (class d)
+| +---
+| | +--- (base class b)
+| | | (vbptr: virtual base pointer)
+| | +---
+| | +--- (base class c)
+| | |(vbptr)
+| | +---
+| +---
+| +---(virtual base a)
+| | data
+| +---
++---
+(vbpr)是指针也占位置。在64位编译器下，一个ptr8字节，考虑字节对齐。
+d damo;
+sizeof(damo) == 3 * 8 = 24
+
+```
+
+---
+
+# 多态
+
+> 虚函数
+
+```cpp
+//静态多态:在编译时绑定函数地址
+//动态多态:在运行时绑定函数地址
+class Animal{
+public:
+ virtual void speak(){
+  cout << "animal speak" << endl;
+ }
+}
+class Cat : public Animal {
+ void speak() {
+  cout << "Cat speak" << endl;
+ }
+}
+void speak(Animal& T) {
+ T.speak();
+}
+void test(){
+ Animal A;
+ speak(A); //Animal speak
+ Cat C;
+ speak(C); //Cat speak
+}
+
++---(class Animal)
+| (vfptr : virtual fouction ptr)
++---
++---Animal::vftable()
+| void Animal::speak()
++---()
+
+
++---(class Cat)
+| +---(base class Animal)
+| |(vfptr : virtual fouction ptr)
+| +---
++---
++---Cat::vftable()
+| void Cat::speak()
++---()
+```
+
+---
+
+> 纯虚函数 & 抽象类
+
+```cpp
+class Base
+{
+public:
+ virtual void func() = 0;//纯虚函数
+ /*
+ 1.只要有一个纯虚函数，着这个类就是抽象类
+ 2.抽象类无法实体化对象。
+ 3.抽象类的子类必须重写。
+ */
+}
+class son : public Base
+{
+public:
+ void func()
+ // 必须存在对纯虚函数的重写,否则无法实体化对象。
+ {
+ }
+}
+void test()
+{
+ /*
+ Base B;  无法实体化 
+ new Base; 无法实体化
+ */
+}
+```
+
+---
+
+> virtual 关键字总结
+
+从菱形继承，多态得出virtual(虚)原理就是用virtual ptr实现不同的功能。
+
+# Lambda表达式/匿名函数
+
+```cpp
+int f = []() ->int
+{
+    return 0;
+}();
+cout << f << endl;
+
+int n = 34, m = 54;
+auto f = [n, m]()mutable
+{
+    return ++n;
+};
+cout << f() << endl;
+cout << f() << endl;
+cout << n << endl;
+//输出为: 35 36 34
+//匿名函数捕获不会修改外部的变量。每次调用都是赋值一个新的。
 ```
