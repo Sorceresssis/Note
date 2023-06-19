@@ -119,11 +119,16 @@ p :nth-child(n){
 
 # HTML
 
+### title属性
+
+![1686589738977](image/HTML+CSS/1686589738977.png)
+
 ## 自定义属性
 
 data-
 
 [详解和自定义属性的调用](Js+Ts.md)
+
 
 # CSS
 
@@ -338,7 +343,6 @@ flex-item的尺寸权重
 ### flex-shrink 收缩
 
 1. flex-item 在一行放不下时，默认（flex-shrink : 1）的每个子元素都会收缩来挤在一行里
-
 2. 也可以用来设置收缩比例，有的收缩的大，有的收缩的小
 
 ### flex-basis
@@ -360,8 +364,6 @@ flex-item的尺寸权重
 
 ## Grid
 
-
-
 # 媒体查询
 
 @media 监听名字 and  (条件)
@@ -371,8 +373,6 @@ flex-item的尺寸权重
 <link rel="stylesheet" href="style320.css" media="媒体查询">
 
 # 响应式开发
-
-
 
 # CSS 样式模板
 
@@ -613,5 +613,35 @@ div:hover {
 </html>
 ```
 
+### minHeigth=0&minwidth=0的妙用
 
+重新计算盒子的高度。让布局变正常，
 
+white-space-nowrap-breaks-flexbox-layout
+
+用minwidth给white-space元素的父节点添加minwidth：0,每次窗口大小变化时变化都会重新计算盒子在flex布局下是应该的大小，让显示正常
+
+minheith解决嵌套flex：1，flex-dri colmu布局时盒子高度计算错误
+
+```html
+ <div style="display: flex; overflow: hidden;">
+        <!-- siderbar -->
+        <div style="width: 200px; display:flex"></div>
+        <!-- right-content -->
+        <div style="flex: 1; display: flex; flex-direction: column; overflow: hidden; min-height: 0;">
+            <!-- header1 -->
+            <div style="height: 50px;display: flex;"></div>
+            <!-- flexbox -->
+            <div style="flex:1; display: flex; flex-direction: column;">
+                <!-- header2 -->
+                <div></div>
+                <!-- scroll box -->
+                <div style="flex: 1; display: flex; overflow-y: scroll;"></div>
+            </div>
+        </div>
+    </div>
+<!-- scroll box 在嵌套的flexbox下滚动会失效 -->
+<!-- 在right-content加上min-height让盒子在flex下重新计算高度 -->
+```
+
+就是解决页面高宽的bug,

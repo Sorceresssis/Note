@@ -851,7 +851,7 @@ Collections.sort(shapes, new Comparator<>() {
 });
 /* 自定义类Shape要排序时，就要重写Comparator<>的compare方法来定义Shape的排序规则，但是排序规则只要被使用一次，所以用匿名内部类来继承comparator<>接口，并重写compare,利用多态来实现Shape的排序;
 */
-
+Collections.sort()
 
 ```
 

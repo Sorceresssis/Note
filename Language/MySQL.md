@@ -1,3 +1,31 @@
+# 规范
+
+## 关键词书写顺序
+
+\1. Annotations
+
+\2. public
+
+\3. protected
+
+\4. private
+
+\5. abstract
+
+\6. static
+
+\7. final
+
+\8. transient
+
+\9. volatile
+
+\10. synchronized
+
+\11. native
+
+\12. strictfp
+
 # 注意事项
 
 ## = 和 :=
@@ -1090,6 +1118,15 @@ mysqldump -u root -p >
 # 碎片化整理
 
 # 全文索引 fulltext
+
+```mysql
+SELECT *, MATCH(name) AGAINST('f            d') AS score
+FROM book
+WHERE MATCH(name) AGAINST('f            d')
+ORDER BY score DESC;
+```
+
+
 
 ## 建立全文索引，用parser 分词器
 

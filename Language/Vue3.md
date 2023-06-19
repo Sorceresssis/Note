@@ -494,3 +494,13 @@ shallowRef, markRaw
 # 依赖注入provide inject
 
 父组件向子组件传递数据使用原型链
+
+
+
+
+
+# vue-router
+
+<a href="/a"> 页面会刷新
+
+<vue-link to='/a'> 页面不会刷新。
