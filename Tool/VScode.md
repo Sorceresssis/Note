@@ -6,26 +6,25 @@
 
 在图标属性添加--extensions -dir "D:\Work\Microsoft VS Code Extensions"
 
-
-
 * 控制台运行
 
 ```shell
 code --extensions-dir "D:\Work\Microsoft VS Code Extensions"
 ```
 
-
-
-
-
-
-
-
-
-
 # 工作
 
 ## HTML
+
+Office
+
+```
+./assets/${fileName}/images/${now}.png
+```
+
+
+
+
 
 ### 格式化
 
@@ -42,4 +41,3 @@ code --extensions-dir "D:\Work\Microsoft VS Code Extensions"
 //  - force-expand-multiline: Wrap each attribute.
 //  - aligned-multiple: Wrap when line length is exceeded, align attributes vertically.
 ```
-

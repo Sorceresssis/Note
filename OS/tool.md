@@ -12,6 +12,7 @@ set http_proxy=
 set http_proxys=
 ```
 
+![image-20230708162244910](image/tool/image-20230708162244910.png)
 
 # Node.js
 
@@ -61,7 +62,7 @@ npm install -save-dev moduleName # -save-dev 的意思是将模块安装到项�
 
 > devDependencies和dependencies
 
-**devDependencies**开发环境使用，就是项目开发时需要，运行，不舒适时就不需要的插件库
+**devDependencies**开发环境使用，就是项目开发时需要，生产运行时就不需要的插件库
 
 **dependencies**像 `express` `jquery`这些模块是项目运行必备的。
 
@@ -84,3 +85,49 @@ ctrl+shift+u
 alt + shift + 左键
 
 按住滚轮
+
+
+
+## remote 授权
+
+在settings.json中添加(github copilot举例)
+
+```json
+"remote.extensionKind": {
+    "GitHub.copilot": [
+        "ui"
+    ]
+}
+```
+
+
+# Powershell
+
+## command history保存位置
+
+```shell
+C:\Users\[username]\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine
+```
+
+```shell
+$directory = "C:\path\to\your\code\repository"
+$totalLines = 0
+$files = Get-ChildItem -Recurse -File -Path $directory -Include "*.js", "*.java", "*.py"  # 根据需要添加文件类型
+foreach ($file in $files) {`
+    $lineCount = (Get-Content $file.FullName | Measure-Object -Line).Lines`
+    Write-Host "$($file.FullName): $lineCount lines"`
+    $totalLines += $lineCount`
+}
+Write-Host "Total lines: $totalLines"
+
+
+$directory = "F:\Project\Github\echo\src"
+$totalLines = 0
+$files = Get-ChildItem -Recurse -File -Path $directory -Include "*.ts", "*.vue", "*.css","*.js"  # 根据需要添加文件类型
+foreach ($file in $files) {`
+    $lineCount = (Get-Content $file.FullName | Measure-Object -Line).Lines`
+    Write-Host "$($file.FullName): $lineCount lines"`
+    $totalLines += $lineCount`
+}
+Write-Host "Total lines: $totalLines"
+```
