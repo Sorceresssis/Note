@@ -528,6 +528,17 @@ kill -9 进程id
 
 提升用户
 
-sudo su 
+sudo su
 
 # 包管理工具
+
+## yum
+
+
+
+
+
+## apt
+
+
+

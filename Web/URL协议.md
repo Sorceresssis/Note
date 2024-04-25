@@ -2,15 +2,12 @@
 
 **常见的标准协议**
 
-
-
 ## HTTP/HTTPS
-
-
-
 
 ## 自定义URL协议
 
+
+vscode://file/{full path to file}:line:column
 
 是的，你提到的方法是通过 URL 协议直接调用用户本地安装的软件。这种方式可以用来打开本地软件或执行其他系统级操作，但需要用户的浏览器和操作系统支持，并且用户可能需要手动设置一些选项以允许这种行为。
 
@@ -19,7 +16,6 @@
 要使用这种方式，用户需要在系统中正确安装了 Visual Studio Code，并且 Visual Studio Code 已经正确注册了相应的 URL 协议。此外，浏览器也需要支持处理这种自定义的 URL 协议。
 
 需要注意的是，这种方式通常受到浏览器安全性和用户隐私的限制，不是所有的浏览器和操作系统都支持这种行为。因此，在实际应用中，需要谨慎使用，并提供替代的方法供用户选择。
-
 
 自定义 URL 协议通常在以下几个领域和场景中会被使用：
 
@@ -33,7 +29,7 @@
 你
 
 User
-用url协议的方式直接打开用户本地软件比如打开vscode可以使用`<a href="vscode://file/{full path to file}:line:column">`Open the file`</a>`这是什么技术
+用url协议的方式直接打开用户本地软件比如打开vscode可以使用 `<a href="vscode://file/{full path to file}:line:column">`Open the file `</a>`这是什么技术
 
 ChatGPT
 
