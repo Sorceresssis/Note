@@ -1,7 +1,9 @@
 <link rel="stylesheet" href="../.style/auto-number-headers.css">
-<link rel="stylesheet" href="../.style/custom-block.css">
+<link rel="stylesheet" href="../.style/reader-adapt.css">
 
-# Windows软件
+<title>Windows 软件</title>
+
+# Windows 软件
 
 ## 前言
 
@@ -9,33 +11,31 @@
 
 讲述了安装时要注意的点，以节约个人时间。
 
+参考文件更改日期。
+
 ## 必要知识
 
 ### 安装位置
 
-无论是需要安装程序（Setup Executable/Setup.exe）安装的软件、不需要安装的绿色软件（Protable Software）或者Microsoft Store的软件我都安装在C盘。除了游戏程序。
+无论是需要安装（Setup Executable/Setup.exe）的软件、不需要安装的绿色软件（Protable Software）或者 Microsoft Store 的软件我都安装在 C 盘。
 
-安装路径有：`C:\Program Files`、 `C:\Program Files (x86)`、 `C:\Applications`
+游戏程序的体积很大，单独安装在游戏盘，不安装在系统盘。
 
-`C:\Program Files`和 `C:\Program Files (x86)`是很多软件默认的安装位置。 ‪`C:\Program Files (x86)`是32位软件安装目录，Microsoft Store软件的安装位置在 `C:\Program Files\WindowsApps`
+系统盘安装路径有：`C:\Program Files`、 `C:\Program Files (x86)`、 `C:\Applications`
 
-`C:\Applications`，Applications是一个自建文件夹，它用来存放无法安装在 `C:\Program Files`和 `C:\Program Files (x86)`目录下的软件和绿色软件（Protable Software）。比如Tor Browsre 安装在 `C:\Program Files`就无法运行。
+`C:\Program Files`和 `C:\Program Files (x86)`是很多软件默认的安装位置。 `C:\Program Files (x86)`是 32 位软件安装目录，Microsoft Store 软件的安装位置在 `C:\Program Files\WindowsApps`
 
-软件文件存放在C盘但是软件的数据保存在数据盘，并且用OndeDirve去备份软件的配置文件。
+`C:\Applications`，Applications 是一个自建文件夹，它用来存放无法安装在 `C:\Program Files`和 `C:\Program Files (x86)`目录下的软件和绿色软件（Protable Software）。比如 Tor Browsre 安装在 `C:\Program Files`就无法运行。
 
-游戏程序单独在一个磁盘上。
+程序文件放在 C 盘但是软件的数据保存在数据盘，并且用 OndeDirve 去备份软件的配置文件。
 
-### Setup Executable安装的软件
+### Setup Executable 安装的软件
 
-需要安装的软件会在自动在注册表和 `C:\ProgramData\Microsoft\Windows\Start Menu\Programs`写入一些信息,来方便用户通过Win+S搜索找到。
+需要安装的软件会在自动在注册表和 `C:\ProgramData\Microsoft\Windows\Start Menu\Programs`写入一些信息,用户通过【 Win + S 】搜索很方便的找到。
 
-Windows是多用户多任务的操作系统。因此Windows有两种软件安装的方式 `Machine wide` 、 `Per user`
+Windows 是多用户多任务的操作系统。因此 Windows 有两种软件安装的方式 `Machine wide` 、 `Per user`
 
-<div class="images customize">
-    <div class="container">
-        <img src="./assets/Software/images/1713822413127.png">
-    </div>
-</div>
+![1713822413127.png](./assets/Software/images/1713822413127.png)
 
 > Machine wide 为使用这台电脑的任何人安装
 
@@ -50,7 +50,7 @@ Windows是多用户多任务的操作系统。因此Windows有两种软件安装
 1. VscodeUserSetup: `C:\Users\\%username%\AppData\Local\Programs`
 2. 百度网盘：`C:\Users\%username%\AppData\Roaming\baidu\BaiduNetdisk`
 
-如果你想强制安装在 `C:\Program Files`目录下（不建议这样做），你可以以管理权限运行安装文件，然后更改安装目录到 `C:\Program Files`安装（但是有些Setup.exe会识别目录，不给你安装，说你呢百度网盘！）。这样做有些软件可能无法正常运行。
+如果你想强制安装在 `C:\Program Files`目录下（不建议这样做），你可以以管理权限运行安装文件，然后更改安装目录到 `C:\Program Files`安装（但是有些 Setup.exe 会识别目录，不给你安装，说你呢百度网盘！）。这样做有些软件可能无法正常运行。
 
 “仅为我安装”，那么安装完成后，软件只能安装软件的这个用户使用，其他用户的开始菜单和桌面上没有这个应用；
 
@@ -80,20 +80,16 @@ Windows是多用户多任务的操作系统。因此Windows有两种软件安装
 
 就是在开始页添加一个文件夹，然后在你们加入多个点击选项。
 
-<div class="images customize">
-    <div class="container">
-        <img src="./assets/Software/images/1713808137265.png">
-    </div>
-</div>
+![1713808137265.png](./assets/Software/images/1713808137265.png)
 
-### Emoji意思
+### Emoji 含义
 
 | Emoji | 含义                                                                                                   |
 | :---: | :----------------------------------------------------------------------------------------------------- |
-|  💲  | 收费                                                                                                   |
-|  👿  | 有过恶意行为的软件，比如捆绑安装，更改电脑设置的操作。安装时要保持警惕，仔细观察安装界面的每一个地方。 |
+|  💲   | 收费                                                                                                   |
+|  👿   | 有过恶意行为的软件，比如捆绑安装，更改电脑设置的操作。安装时要保持警惕，仔细观察安装界面的每一个地方。 |
 
-## 📃 Windows运行库
+## 📃 Windows 运行库
 
 ### VC++库
 
@@ -107,7 +103,11 @@ Windows是多用户多任务的操作系统。因此Windows有两种软件安装
 
 > 介绍
 
-Nvidia没有默认安装。
+Nvidia 没有默认安装。
+
+## 📃 Windows 内置元件
+
+### AVI Video Extension
 
 ## 📃 Code 软件
 
@@ -115,15 +115,15 @@ Nvidia没有默认安装。
 
 > 介绍
 
-PowerShell 是一个 `跨平台`（Windows、Linux 和 macOS）自动化和配置工具/框架。你可以在一个平台操作其他平台的Shell。
+PowerShell 是一个 `跨平台`（Windows、Linux 和 macOS）自动化和配置工具/框架。你可以在一个平台操作其他平台的 Shell。
 
-Windows系统应该是自带的。我第一次接触PowerShell是大一学C/C++安装Visual Studio时候。
+Windows 系统应该是自带的。我第一次接触 PowerShell 是大一学 C/C++安装 Visual Studio 时候。
 
 ### PowerShell7
 
 > 介绍
 
-PowerShell 7 是专为云、本地和混合环境设计的，它包含增强功能和新功能。可以和PowerShell5.1并存。比PowerShell5好用。
+PowerShell 7 是专为云、本地和混合环境设计的，它包含增强功能和新功能。可以和 PowerShell5.1 并存。比 PowerShell5 好用。
 
 > 安装
 
@@ -135,19 +135,21 @@ winget install --id Microsoft.Powershell --source winget
 
 > 介绍
 
-新的 Windows 终端，告别CMD和PowerShell原本的丑陋外观。它可以集成多个终端，包括Git、PowerShell、WSL-Ubuntu等等。
+新的 Windows 终端，告别 CMD 和 PowerShell 原本的丑陋外观。它可以集成多个终端，包括 Git、PowerShell、WSL-Ubuntu 等等。
 
-<div class="images customize">
-    <div class="container">
-        <img src="./assets/Software/images/1713735812491.png">
-    </div>
-</div>
+![1713735812491.png](./assets/Software/images/1713735812491.png)
 
-win11应该是自带的，win10要自己安装。推荐用Microsoft Stores安装，这样方便更新。
+win11 应该是自带的，win10 要自己安装。推荐用 Microsoft Stores 安装，这样方便更新。
 
 ### Git
 
+### Microsoft Visual Studio
+
 > 介绍
+
+宇宙第一 ide
+
+大一学 c++用的
 
 ### Microsoft Visual Studio Code
 
@@ -159,11 +161,7 @@ win11应该是自带的，win10要自己安装。推荐用Microsoft Stores安装
 
 官网上大大的下载按钮下载的是 `User Installer`版本,就是只为当前用户安装。如果想要为使用这台电脑的任何人安装的版本（**System Installer**）就要打开下面的[Insiders edition](https://code.visualstudio.com/insiders), or [other platforms](https://code.visualstudio.com/#alt-downloads)页面，
 
-<div class="images customize">
-    <div class="container">
-        <img src="./assets/Software/images/1713822794488.png">
-    </div>
-</div>
+![1713822794488.png](./assets/Software/images/1713822794488.png)
 
 ### Navicat Premium 16 💲
 
@@ -175,11 +173,17 @@ win11应该是自带的，win10要自己安装。推荐用Microsoft Stores安装
 
 ### JetBrains DataGrips 💲
 
+### Fiddler Classic
+
+> 介绍
+
+抓包用的，相较于 Wireshark，Fiddler 有对 https 进行解密的功能，对移动端抓包也很方便。
+
 ### APIPost
 
 > 介绍
 
-API设计对接工具。
+API 设计对接工具。
 
 ### Docker
 
@@ -187,9 +191,9 @@ API设计对接工具。
 
 > 安装
 
-8、11、17各装一个。
+8、11、17 各装一个。
 
-分别配置环境变量JAVA17_HOME
+分别配置环境变量 JAVA17_HOME
 
 JAVA_HOME=%JAVA17_HOME%
 
@@ -197,7 +201,7 @@ JAVA_HOME=%JAVA17_HOME%
 
 > 安装
 
-别点那个Python环境！
+别点那个 Python 环境！
 
 ### Python3
 
@@ -211,13 +215,13 @@ JAVA_HOME=%JAVA17_HOME%
 
 > 介绍
 
-关系型数据库，57被淘汰，80和83的默认端口都是一样的。没有太大差别。
+关系型数据库，57 被淘汰，80 和 83 的默认端口都是一样的。没有太大差别。
 
 > 安装
 
-选择Typical安装方式。
+选择 Typical 安装方式。
 
-要注意，MySQL目前有mysql57、mysql80、mysql83三种服务名。
+要注意，MySQL 目前有 mysql57、mysql80、mysql83 三种服务名。
 
 关闭开机自启服务。用手动的方式启动
 
@@ -240,7 +244,7 @@ net stop mysql83
 
 把 `C:\Program Files\PostgreSQL\15\bin`添加到环境变量
 
-PowerShell运行
+PowerShell 运行
 
 ```powershell
 pg_ctl start
@@ -248,20 +252,15 @@ pg_ctl start
 
 去数据保存位置的 `log`目录中看启动报错日志。慢慢的去解决吧。
 
-要给当前用户对PostgreSQL文件夹完全控制权限。
+要给当前用户对 PostgreSQL 文件夹完全控制权限。
 
-<div class="images customize">
-    <div class="container">
-        <img src="./assets/Software/images/1714077808951.png">
-    </div>
-</div>
-
+![1714077808951.png](./assets/Software/images/1714077808951.png)
 
 ### WSL2
 
 > 介绍
 
-Windows Subsystem for Linux，WSL2的所有网络服务Windows也是可以访问到的。
+Windows Subsystem for Linux，WSL2 的所有网络服务 Windows 也是可以访问到的。
 
 > 安装
 
@@ -287,23 +286,23 @@ ubuntu config --default-user 用户名
 
 > 安装
 
-官方的Github仓库已经删库了。
+官方的 Github 仓库已经删库了。
 
 > 配置
 
-记得下载Service Mode，开启Tun模式。
+记得下载 Service Mode，开启 Tun 模式。
 
 ### V2rayN
 
 > 介绍
 
-代理软件，也支持tun模式，但是它的操作逻辑我真不喜欢。反人类。Clash下位替代品。
+代理软件，也支持 tun 模式，但是它的操作逻辑我真不喜欢。反人类。Clash 下位替代品。
 
 > 安装
 
 [Github](https://github.com/2dust/v2rayN)
 
-目前最新版要.Net8框架
+目前最新版要.Net8 框架
 
 ### SSR(ShadowsocksR)
 
@@ -321,11 +320,7 @@ ubuntu config --default-user 用户名
 
 Microsoft PowerToys 是一组实用程序，供高级用户调整和简化其 Windows 体验以提高工作效率。也就是一个工具集合。
 
-<div class="images customize">
-    <div class="container">
-        <img src="./assets/Software/images/1713734920029.png">
-    </div>
-</div>
+![1713734920029.png](./assets/Software/images/1713734920029.png)
 
 > 安装
 
@@ -347,33 +342,29 @@ Microsoft PowerToys 是一组实用程序，供高级用户调整和简化其 Wi
 winget install Microsoft.PowerToys --source winget
 ```
 
-推荐GitHub安装，可以很方便的自定义安装位置和升级。
+推荐 GitHub 安装，可以很方便的自定义安装位置和升级。
 
 > 配置
 
 **粘贴为纯文本功能**
 
-建议把快捷键改为 Win + Ctrl + V， 表示 PowerToys的粘贴功能
+建议把快捷键改为 Win + Ctrl + V， 表示 PowerToys 的粘贴功能
 
 **文本提取**
 
-一个OCR功能。支持多个语言。如何添加查看官方文档。
+一个 OCR 功能。支持多个语言。如何添加查看官方文档。
 
 ### PixPin
 
 > 介绍
 
-目前只有Windows平台的。
+目前只有 Windows 平台的。
 
-一个很好的截图软件，个人觉得比Snipaste好用，拥有Snipaste所有功能还支持长截图、文字识别等功能。
+一个很好的截图软件，个人觉得比 Snipaste 好用，拥有 Snipaste 所有功能还支持长截图、文字识别等功能。
 
 但是长截图的功能是靠识别屏幕内容来拼接的。有些屏幕内容很像时长截图可能会截取失败。
 
-<div class="images customize">
-    <div class="container">
-        <img src="./assets/Software/images/1713735629900.png">
-    </div>
-</div>
+![1713735629900.png](./assets/Software/images/1713735629900.png)
 
 > 安装
 
@@ -383,29 +374,25 @@ winget install Microsoft.PowerToys --source winget
 
 > 介绍
 
-老牌的压缩软件，我也很喜欢，但是只支持zip和rar格式的压缩。
+老牌的压缩软件，我也很喜欢，但是只支持 zip 和 rar 格式的压缩。
 
 > 安装
 
-WinRAR通常有多个版本：中国特供免费版，开发版（rrlb）、正式版（wrr）
+WinRAR 通常有多个版本：中国特供免费版，开发版（rrlb）、正式版（wrr）
 
 第一种有弹出广告，推荐下载正式版（wrr）然后下载破解密钥复制到安装目录。
 
-这里推荐去百度贴吧的[WinRAR吧](https://tieba.baidu.com/f?kw=winrar&ie=utf-8)去获取资源，吾爱破解的资源可能落后于WinRAR吧。
+这里推荐去百度贴吧的[WinRAR 吧](https://tieba.baidu.com/f?kw=winrar&ie=utf-8)去获取资源，吾爱破解的资源可能落后于 WinRAR 吧。
 
 **安装配置**
 
-<div class="images customize">
-    <div class="container">
-        <img src="./assets/Software/images/1713811393355.png">
-    </div>
-</div>
+![1713811393355.png](./assets/Software/images/1713811393355.png)
 
 ### 7-Zip
 
 > 介绍
 
-7-Zip算法的压缩软件。
+7-Zip 算法的压缩软件。
 
 > 安装
 
@@ -415,9 +402,9 @@ WinRAR通常有多个版本：中国特供免费版，开发版（rrlb）、正�
 
 > 介绍
 
-一个Markdown阅读软件，但是觉得不如vscode里的Office viewer插件好用，就是颜值高一点。另一个非常著名的软件是[Obsidian](https://obsidian.md/)但是它图片地址解析的方式我真不喜欢。对其他软件编写的md文件的兼容性极差，很封闭，low的一。我不知道为什么很多人吹。
+一个 Markdown 阅读软件，但是觉得不如 vscode 里的 Office viewer 插件好用，就是颜值高一点。另一个非常著名的软件是[Obsidian](https://obsidian.md/)但是它图片地址解析的方式我真不喜欢。对其他软件编写的 md 文件的兼容性极差，很封闭，low 的一。我不知道为什么很多人吹。
 
-最后就是，Typora和Obsidian都不支持在文件内引入css文件。本文件就引入了两个css文件。这里推荐一下Chrome的[Markdown Preview Plus Dz特别版](https://chromewebstore.google.com/detail/mbbfdipmmlbkfdkeklpioafmdcodhfli)插件，和vscode的[Office Viewer(Markdown Editor)](https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-office)
+最后就是，Typora 和 Obsidian 都不支持在文件内引入 css 文件。本文件就引入 css 文件。这里推荐一下 Chrome 的[Markdown Reader](https://chromewebstore.google.com/detail/markdown-reader/medapdbncneneejhbgcjceippjlfkmkg)插件，和 vscode 的[Office Viewer(Markdown Editor)](https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-office)
 
 ### Microsoft ToDo
 
@@ -427,7 +414,7 @@ WinRAR通常有多个版本：中国特供免费版，开发版（rrlb）、正�
 
 > 安装
 
-建议在Microsoft Store里下载安装。
+建议在 Microsoft Store 里下载安装。
 
 ### Microsoft 便笺
 
@@ -447,21 +434,21 @@ Microsoft Store
 
 > 介绍
 
-世界第一浏览器，和edge比就是内存占用高
+世界第一浏览器，和 edge 比就是内存占用高
 
 ### Microsoft Edge
 
 > 介绍
 
-需要在同一个网站同时登陆两个账号时用，早期new bing的ai只能在edge上用。
+需要在同一个网站同时登陆两个账号时用，早期 new bing 的 ai 只能在 edge 上用。
 
-习惯使用Chrome，Edge的操作我有些不习惯。不过Edge的有些功能我挺喜欢的。
+习惯使用 Chrome，Edge 的操作我有些不习惯。不过 Edge 的有些功能我挺喜欢的。
 
 ### Tor Browser
 
 > 介绍
 
-基于Foxfair开发的隐私浏览器，可以访问一下深网之类的，有时候代理被封的时候也可以用Tor来访问。
+基于 Foxfair 开发的隐私浏览器，可以访问一下深网之类的，有时候代理被封的时候也可以用 Tor 来访问。
 
 > 安装
 
@@ -481,14 +468,14 @@ Microsoft Store
 
 > 配置
 
-把下载目录定向到下载目录的IDM下。
+把下载目录定向到下载目录的 IDM 下。
 
 ### Motrix
 
 > 介绍
 
 功能齐全的下载管理器
-支持HTTP、FTP、BitTorrent、Magnet等下载。下载软件。
+支持 HTTP、FTP、BitTorrent、Magnet 等下载。下载软件。
 
 > 安装
 
@@ -502,7 +489,7 @@ Microsoft Store
 
 > 介绍
 
-bilibili视频下载工具。
+bilibili 视频下载工具。
 
 > 安装
 
@@ -512,7 +499,7 @@ bilibili视频下载工具。
 
 > 介绍
 
-很好用的视频播放器，比Pot Player颜值高，有些Pot Player的小功能，它没有。还有就是PowerDVD不能给ISO镜像文件的影视外挂字幕。
+很好用的视频播放器，比 Pot Player 颜值高，有些 Pot Player 的小功能它没有。还有就是 PowerDVD 不能给 ISO 镜像文件的影视外挂字幕。
 
 ### Pot Player
 
@@ -528,7 +515,7 @@ bilibili视频下载工具。
 
 > 介绍
 
-虚拟光驱软件。上古神器。现在Pot Player和PowerDVD对光驱也很好，这个软件我也几乎没用过了。
+虚拟光驱软件。上古神器。现在 Pot Player 和 PowerDVD 对光驱的支持也很好，这个软件我也几乎没用过了。
 
 ### Gridplayer
 
@@ -544,7 +531,7 @@ bilibili视频下载工具。
 
 > 介绍
 
-PC端的软件写的是真的烂，只能安装在用户目录。百度网盘也烂，但是百度毕竟是老牌的公司、储存空间也大，大文件和要长时间存储的冷数据文件我还是用百度网盘的。
+PC 端的软件写的是真的烂，只能安装在用户目录。百度网盘也烂，但是百度毕竟是老牌的公司、储存空间也大，大文件和要长时间存储的冷数据文件我还是用百度网盘的。
 
 一坨屎还要在你电脑上的遍地涂抹。
 
@@ -560,7 +547,7 @@ PC端的软件写的是真的烂，只能安装在用户目录。百度网盘也
 
 > 介绍
 
-windows自带的OneDrive版本太老，能打开都是一个问题，建议去官网下载最新的OneDrive安装
+windows 自带的 OneDrive 版本太老，能打开都是一个问题，建议去官网下载最新的 OneDrive 安装
 
 > 安装
 
@@ -596,7 +583,7 @@ Google 的云盘。
 
 > 介绍
 
-电子书阅读器。支持PDF、ePub。官方还给了免费的电子书格式转化接口
+电子书阅读器。支持 PDF、ePub。官方还给了免费的电子书格式转化接口
 
 > 安装
 
@@ -624,11 +611,15 @@ Stellarium 是一个适用于您的计算机的免费开源天文馆。它以 3D
 
 [官网](https://bklivedown.club/)
 
+### uTinyRipper
+
+Unlity 解包工具
+
 ### ToDesk
 
 > 介绍
 
-原创控制软件,蛮好用的。
+远程控制软件,蛮好用的。
 
 ### Adobe Acrobat DC
 
@@ -639,6 +630,8 @@ Stellarium 是一个适用于您的计算机的免费开源天文馆。它以 3D
 ### Adobe Audition
 
 ### Adobe Media Encoder
+
+经常把文件编码成跟适合编辑的格式。
 
 ### Topaz Gigapixel AI
 
@@ -670,7 +663,7 @@ Stellarium 是一个适用于您的计算机的免费开源天文馆。它以 3D
 
 一个右键菜单管理工具。
 
-在这里批评一下百度网盘的windows客户端，不单单界面模糊，而且每次更新我都要去重新关闭他的右键菜单选项。
+这里再次批评一下百度网盘的 windows 客户端，不单单界面模糊，而且每次更新我都要去重新关闭他的右键菜单选项。
 
 > 安装
 
@@ -688,9 +681,9 @@ Stellarium 是一个适用于您的计算机的免费开源天文馆。它以 3D
 
 > 介绍
 
-软件卸载软件。IObitUninstalller不行就是用它。你可自己添加已经安装的软件。他会去分析注册表和「开始」菜单。去删除软件。和[Geek Uninstaller](https://geekuninstaller.com/download)相比没有那么威胁。
+软件卸载软件。IObitUninstalller 不行就是用它。你可自己添加已经安装的软件。他会去分析注册表和「开始」菜单。去删除软件。和[Geek Uninstaller](https://geekuninstaller.com/download)相比没有那么危险。
 
-Geek会删除软件安装目录下的全部数据。
+Geek 会删除软件安装目录下的全部数据。
 
 ### Dism++
 
@@ -701,6 +694,12 @@ Geek会删除软件安装目录下的全部数据。
 > 安装
 
 [Github](https://github.com/Chuyu-Team/Dism-Multi-language)
+
+### DiskGenius
+
+> 介绍
+
+硬盘检测工具
 
 ### Spacesniffer
 
@@ -718,7 +717,7 @@ Geek会删除软件安装目录下的全部数据。
 
 > 介绍
 
-可以在桌面悬浮窗或者在任务栏显示当前网速和CPU及内存利用率等信息的软件。
+可以在桌面悬浮窗或者在任务栏显示当前网速和 CPU 及内存利用率等信息的软件。
 
 > 安装
 
@@ -732,7 +731,7 @@ Geek会删除软件安装目录下的全部数据。
 
 > 安装
 
-有Github仓库，但是建议在Microsoft Store安装。
+有 Github 仓库，但是建议在 Microsoft Store 安装。
 
 ### Western Digital SSD Dashboard
 
@@ -742,7 +741,7 @@ Geek会删除软件安装目录下的全部数据。
 
 > 安装
 
-在[西数软件下载页](https://support-en.wd.com/app/products/downloads/softwaredownloads)找到Western Digital Dashboard下载
+在[西数软件下载页](https://support-en.wd.com/app/products/downloads/softwaredownloads)找到 Western Digital Dashboard 下载
 
 ### Lenovo Legion Accessory Central
 
@@ -756,7 +755,11 @@ Geek会删除软件安装目录下的全部数据。
 
 ## 📃 Life Sofeware
 
-### QQ音乐
+### QQ 音乐
+
+> 配置
+
+修改缓存位置
 
 ### 微信
 
@@ -766,13 +769,13 @@ Geek会删除软件安装目录下的全部数据。
 
 > 介绍
 
-个人觉得比QQ好用。
+个人觉得比 QQ 好用。
 
 ### Telegram
 
 > 安装
 
-注意，无论是官网还是Github都只提供了单用户安装版，默认安装位置为 `C:\Users\Sorceress\AppData\Roaming\Telegram Desktop`。建议改到 `C:\Applications\Telegram Desktop`
+注意，无论是官网还是 Github 都只提供了单用户安装版，默认安装位置为 `C:\Users\Sorceress\AppData\Roaming\Telegram Desktop`。建议改到 `C:\Applications\Telegram Desktop`
 
 ## 📃 Game
 
@@ -786,13 +789,13 @@ Geek会删除软件安装目录下的全部数据。
 
 > 介绍
 
-外置准星。Microsoft Store下载
+外置准星。Microsoft Store 下载
 
 ### Steam
 
 > 介绍
 
-该死的G胖。
+该死的 G 胖。
 
 ### EA
 
@@ -816,4 +819,4 @@ Geek会删除软件安装目录下的全部数据。
 
 > 介绍
 
-Steam游戏DLC破解，他只能让你可以使用DLC，不能够提供DLC给你。所有通常只能破解DLC和游戏本体一起下载的游戏。
+Steam 游戏 DLC 破解，他只能让你可以使用 DLC，不能够提供 DLC 文件给你。所有通常只能破解 DLC 和游戏本体一起下载的游戏。
