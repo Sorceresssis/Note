@@ -1,6 +1,6 @@
 # API
 
-### 全部API
+### 全部 API
 
 https://api.github.com
 
