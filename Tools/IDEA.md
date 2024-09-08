@@ -1,3 +1,8 @@
+<link rel="stylesheet" href="../.style/enhance.css"> 
+<link rel="stylesheet" href="../.style/reader-adapt.css">
+
+<title> IDEA </title>
+
 # IDEA
 
 ## 配置

@@ -5,8 +5,6 @@
 
 # UI Example
 
-page
-
 ## page
 
 ### Agithub Actions

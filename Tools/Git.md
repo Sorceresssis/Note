@@ -1,180 +1,271 @@
-# 使用案例
+<link rel="stylesheet" href="../.style/enhance.css"> 
+<link rel="stylesheet" href="../.style/reader-adapt.css">
 
-## 清除所有提交记录
+<title> Git </title>
 
-1. 切换到新的分支
+# Git
 
-```shell
-git checkout --orphan latest_branch
+## 快速开始
+
+### 本地初始化仓库
+
+`git init`
+
+
+
+### 远程下载仓库代码
+
+```powershell
+git clone https://[克隆账号]:[克隆密码]@<仓库地址> [克隆到的地址]
 ```
 
-> 说明：`git checkout --orphan`的核心用途是 `以类似git init的状态创建新的非父分支`，也就是创建一个无提交记录的分支。
 
-2. 缓存所有文件（除了.gitignore 中声明排除的）
 
-```shell
-git add -A
+## 提交 commit
+
+### 普通提交
+
+`git add <filename>`
+
+
+
+### 合并上一次提交
+
+`--amend` : 把最新的修改合并到最新的提交。本质是通过创建新提交来替换当前分支的尖端。
+
+。
+
+`--no-edit` : 修改提交而不更改其提交消息。
+
+```powershell
+git commit --amend
+git commit --amend --no-edit
 ```
 
-3. 提交跟踪过的文件（Commit the changes）\
 
-```shell
-git commit -am “commit message”
+
+## 提交历史 Log
+
+
+
+
+
+## 分支 Branch
+
+### 分支操作
+
+
+
+**选项 Options**
+
+`-m` : 重命名
+
+`-d` : 删除
+
+----orphan 创建一个干净的分支， 默认的是基于当前分支来传教，作为 基础(base), 后面会有rebase 操作。
+
+### 切换分支 checkout
+
+
+
+`git checkout -b new-branch-name`
+
+
+
+### 合并 merge
+
+### 合并冲突解决
+
+### 变基 rebase
+
+### 变基冲突解决
+
+变基冲突，
+
+### 合并和变基如何选择
+
+变基适合本分支依赖模块更新。他不需要知道。
+
+合并适合新功能的添加。
+
+
+
+### Pull Request
+
+
+
+## Git Stash
+
+`git stash` 命令允许你临时保存当前工作目录的更改，以便你可以切换到其他分支或处理其他任务。
+
+不需要提交就是可以切换到其他分支。
+
+## 回退/重置 Reset
+
+`git reset`
+
+
+
+
+
+## 远程 Remote
+
+### 查看远程仓库
+
+`git remote`
+
+如果是使用 `clone` 命令克隆了一个仓库，命令会自动将其添加为远程仓库并默认以 “origin” 为简写
+
+```bash
+git remote
+
+# 结果
+origin 	# 默认远程仓库
+remote2 # 其他远程仓库
 ```
 
-4. 删除 main 分支（Delete the branch）
+**选项**
 
-```shell
-git branch -D main
+`-v` : 会显示需要读写远程仓库使用的 Git 保存的简写与其对应的 URL。
+
+```powershell
+git remote -v
+origin	https://github.com/username/repo (fetch)
+origin	https://github.com/username/repo (push)
 ```
 
-5. 重命名当前分支为 master（Rename the current branch to master）
+### 添加远程仓库
 
-```shell
-git branch -m main
+`git remote add <shortname> <url>`
+
+```powershell
+git remote add pb https://github.com/paulboone/ticgit
+
+git remote -v
+origin	https://github.com/schacon/ticgit (fetch)
+origin	https://github.com/schacon/ticgit (push)
+pb	https://github.com/paulboone/ticgit (fetch)
+pb	https://github.com/paulboone/ticgit (push)
 ```
 
-6. 提交到远程 master 分支 （Finally, force update your repository）
+### 从远程仓库中获得数据
 
-```shell
-git push -f origin main
+`git fetch <remote> [remote_branch]:[local_branch]`
+
+
+
+### 根据远程分支创建本地分支
+
+`git checkout -b <local_branch> <remote>/<remote_branch>`
+
+
+
+### 拉取
+
+`git pull <remote> <remote_branch>:<local_branch>`
+
+
+
+### 推送 
+
+`git push [-options] <remote> <remote_branch>` 本地和远程同名
+
+`git push [-options] <remote> <local_branch>:<remote_branch>` 本地和远程不同名
+
+
+
+```powershell
+git push -u origin my-dev:dev
 ```
 
-### 远程分支覆盖
+
+
+**选项 Options** 
+
+`-f` : 强制推送，有时推送的提交树和远程分支冲突，可以强制推送，但是很危险的操作。
+
+`-u` : 把当前分支与要推送的远程分支关联起来，下一次直接使用 `git push` 就可以推送到关联的远程分支  
+
+
+
+
+
+### 根据远程回退 Remote Reset
 
 git fetch --all
 git reset --hard origin/master (这里 master 要修改为对应的分支名)
-git pull
-
-### 创建分支远程
-
-创建一个新分支（如果你还没有创建分支）：
-
-bash
-复制代码
-git checkout -b new-branch-name
-将新分支推送到远程仓库：
-
-bash
-复制代码
-git push -u origin new-branch-name
-
-### 创建并切换到远程分支：
-
-使用 checkout 命令创建并切换到远程分支（假设远程分支名为 feature-branch）：
-
-bash
-复制代码
-git checkout -b feature-branch origin/feature-branch
-
-git push $remote `<branch-name>`
-
-本地分支名和 远程分支名不一样怎么解决
-ChatGPT 说：
-ChatGPT
-如果本地分支名和远程分支名不一样，但你希望推送本地分支到远程，并使其对应远程的特定分支，你可以通过指定推送的目标分支来解决这个问题。
-
-方案 1: 手动指定推送目标分支
-当本地和远程分支名不一样时，你可以手动指定推送的目标分支。
-
-bash
-复制代码
-git push origin 本地分支名:远程分支名
-例如，你本地分支名为 my-local-branch，远程分支名为 dev，你可以这样推送：
-
-bash
-复制代码
-git push origin my-local-branch:dev
-这会将你本地的 my-local-branch 分支推送到远程，并将其作为远程的 dev 分支更新。
-
-方案 2: 重命名本地分支以匹配远程分支名
-如果你希望本地分支名和远程分支名保持一致，你可以直接重命名本地分支。
-
-切换到目标分支：
-
-bash
-复制代码
-git checkout my-local-branch
-重命名本地分支：
-
-bash
-复制代码
-git branch -m 新的分支名
-例如，将 my-local-branch 重命名为 dev：
-
-bash
-复制代码
-git branch -m dev
-推送重命名后的分支到远程：
-
-bash
-复制代码
-git push origin dev
-设置上游分支（可选）：
-
-为了简化后续操作，你可以设置远程分支为该本地分支的上游分支：
-
-bash
-复制代码
-git push --set-upstream origin dev
-这样，之后在 dev 分支上执行 git push 和 git pull 时，就会自动推送或拉取到远程的 dev 分支。
-
-方案 3: 强制将本地分支推送为远程的新分支
-如果你想将本地分支推送为远程的一个新分支（不同名），可以直接推送并创建远程分支：
-
-bash
-复制代码
-git push origin my-local-branch:new-remote-branch
-这会在远程创建一个名为 new-remote-branch 的分支。
 
 
 
+## 标签 Tag
 
-git checkout -b  feat/vitem_group origin/feat/vitem_group
+`git tag`
 
-# 教程
 
-## git 输入历史保存位置
 
-```shell
-C:/user/admin(本机用户名)/.bash_history
+## 配置 Config
+
+```powershell
+git config [--参数] <key> <value>
 ```
 
-## git clone
+**参数**
 
-```shell
-git clone https://[克隆账号]:[克隆密码]@仓库地址 克隆到的地址
+```powershell
+--global # 全局
 ```
 
-## 配置代理
+### 文件名大小写敏感
 
-### **对单个网址**
+windows 系统 的文件名是大小写不敏感的，这就导致，代码在不同的操作系统编译运行会出错。所以建议设置 git 文件名大小写敏感。
 
-- 只对 github 加代理
-
-```shell
-git config --global http.https://github.com.proxy 'socks5://127.0.0.1:1080'
-git config --global http.https://github.com.proxy 'http://127.0.0.1:代理的port'
+```powershell
+git config --global core.ignorecase false
 ```
 
-- 取消代理
+### 代理
 
-```shell
-git config --global --unset http.https://github.com.proxy
-```
+**添加代理**
 
-### **所有网址**
+```powershell
+git config [-Options] http.proxy '<协议>://<host>:<port>'
 
-- 加代理
-
-```shell
-# 代理是socks5:127.0.0.1:1080
 git config --global http.proxy 'socks5://127.0.0.1:1080'
-git config --global https.proxy 'socks5://127.0.0.1:1080'
+git config --global https.proxy 'http://127.0.0.1:7890'
 ```
 
-### 大小写敏感
+## 案例
 
-```shell
-git config core.ignorecase false
+### 分支命名
+
+`main`, `dev` , `feat/xxx`, `fix/xxx`
+
+### 多人合作流程案例1
+
+1. 在 dev 分支基础上创建自己的分支 `feat/my-branch`
+2. rebase dev 分支更的新代码。解决 rebase 冲突
+3. 提交 pr 。
+
+## 其他
+
+### git 命令历史保存位置
+
+```powershell
+C:/user/%User%/.bash_history
 ```
+
+### 提交签名验证 Commit Signature Verification
+
+Github 提交会有都有`Verfied`标签
+
+`Verified`标签表示，这个commit确实是commiter本人所为
+
+
+
+
+
+
+
+
+
+ 
