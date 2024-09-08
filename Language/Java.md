@@ -23,6 +23,33 @@
 再使用input.nextInt()、input.nextDouble()时，后面还有换行符没有吸收
 如果后面要用input.nextLine(), 则要吸收掉换行符。
 
+
+## 关键词书写顺序
+
+\1. Annotations
+
+\2. public
+
+\3. protected
+
+\4. private
+
+\5. abstract
+
+\6. static
+
+\7. final
+
+\8. transient
+
+\9. volatile
+
+\10. synchronized
+
+\11. native
+
+\12. strictfp
+
 # 内置函数使用注意事项
 
 > Integer.parseInt(string, radix)
@@ -314,9 +341,7 @@ Course@16b98e56
 
 ## 想到的一个深拷贝的思想
 
-就是给每一个类提供一个clone()方法, 该方法返回一个new出来的对象。其new时传入的参数是也是成员变量的clone()new出来的；本质就是用clone()实现了深拷贝的`递归`，一直递归到java的基本数据类型；
-
-
+就是给每一个类提供一个clone()方法, 该方法返回一个new出来的对象。其new时传入的参数是也是成员变量的clone()new出来的；本质就是用clone()实现了深拷贝的 `递归`，一直递归到java的基本数据类型；
 
 ```java
 class Main {
@@ -375,7 +400,7 @@ class A {
 
 ## 实现Cloneable实现深拷贝
 
-clone()实现了深拷贝的`递归`，一直递归到java的基本数据类型；
+clone()实现了深拷贝的 `递归`，一直递归到java的基本数据类型；
 
 ```java
 public class AddressClone implements Cloneable{
@@ -412,8 +437,8 @@ public class UserClone implements Cloneable{
         userClone.setAddress(this.address.clone());
         return userClone;
     }
-    
-    
+  
+  
 public static void main(String[] args) throws CloneNotSupportedException {
         AddressClone address = new AddressClone("小区1", "小区2");
         UserClone user = new UserClone("小李", address);
@@ -426,8 +451,6 @@ public static void main(String[] args) throws CloneNotSupportedException {
     }
 }
 ```
-
-
 
 # 继承
 
@@ -839,7 +862,7 @@ class Animal{
 
 匿名内部类的作用是当你像实现 `多态`而 `重写`传入参数的方法且这个 `重写的方法`只被使用一两次时(因此你不需要一个名字来分辨它)，帮你快速的创建一个继承了你要重写方法的所在类的类，并new一个对象；
 
-> 在对ArrayList 排序时使用的 Comparator`<E>`典型使用了匿名内部内；
+> 在对ArrayList 排序时使用的 Comparator `<E>`典型使用了匿名内部内；
 
 ```java
 Collections.sort(shapes, new Comparator<>() {
@@ -873,7 +896,7 @@ public class Student implements Serializable {
     private String name;
     private Integer age;
     private Integer score;
-    
+  
     @Override
     public String toString() {
         return "Student:" + '\n' +
@@ -896,7 +919,7 @@ public static void serialize(  ) throws IOException {
         new ObjectOutputStream( new FileOutputStream( new File("student.txt") ) );
     objectOutputStream.writeObject( student );
     objectOutputStream.close();
-    
+  
     System.out.println("序列化成功！已经生成student.txt文件");
     System.out.println("==============================================");
 }
@@ -907,7 +930,7 @@ public static void deserialize(  ) throws IOException, ClassNotFoundException {
         new ObjectInputStream( new FileInputStream( new File("student.txt") ) );
     Student student = (Student) objectInputStream.readObject();
     objectInputStream.close();
-    
+  
     System.out.println("反序列化结果为：");
     System.out.println( student );
 }
@@ -931,7 +954,7 @@ Gjsonb把 object --> json 序列化 json --> object 反序列化
 
 > 注意要点
 
-1.Lambda表达式可以简化匿名内部类的书写，但是只能简化`函数式接口`的匿名内部类的写法;`函数式接口`就是有且仅有一个抽象方法的接口；接口上方可以加@FunctionalInterface注解；
+1.Lambda表达式可以简化匿名内部类的书写，但是只能简化 `函数式接口`的匿名内部类的写法;`函数式接口`就是有且仅有一个抽象方法的接口；接口上方可以加@FunctionalInterface注解；
 
 因为lambda没有名字，如果有多个抽象方法编译器不知道要重写哪个方法；
 
@@ -940,8 +963,6 @@ Gjsonb把 object --> json 序列化 json --> object 反序列化
 ## comparable<> 和comparator
 
 默认排序
-
-
 
 自定排序
 
@@ -969,7 +990,7 @@ collections是工具类 给继承lCollection
 
 本质双向链表
 
-> list.forEach(s->sout(s))   
+> list.forEach(s->sout(s))
 
 ## HashSet
 
@@ -1146,7 +1167,7 @@ try {
  * */
 ```
 
-> 只有`抛出的错误`和要`捕获的错误`是一致的程序才会继续，否则依然会退出程序
+> 只有 `抛出的错误`和要 `捕获的错误`是一致的程序才会继续，否则依然会退出程序
 
 ```java
 try {
@@ -1196,8 +1217,6 @@ try {
      // 
 }
 ```
-
-
 
 ### throwable方法
 
@@ -1255,14 +1274,6 @@ class NameFormatException extends RuntimeException {
 }
 ```
 
-
-
 # 反射
-
-
-
-
-
-
 
 # 锁

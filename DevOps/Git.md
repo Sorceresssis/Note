@@ -11,23 +11,17 @@
 
 `git init`
 
-
-
 ### 远程下载仓库代码
 
 ```powershell
 git clone https://[克隆账号]:[克隆密码]@<仓库地址> [克隆到的地址]
 ```
 
-
-
 ## 提交 commit
 
 ### 普通提交
 
 `git add <filename>`
-
-
 
 ### 合并上一次提交
 
@@ -42,19 +36,11 @@ git commit --amend
 git commit --amend --no-edit
 ```
 
-
-
 ## 提交历史 Log
-
-
-
-
 
 ## 分支 Branch
 
 ### 分支操作
-
-
 
 **选项 Options**
 
@@ -66,11 +52,7 @@ git commit --amend --no-edit
 
 ### 切换分支 checkout
 
-
-
 `git checkout -b new-branch-name`
-
-
 
 ### 合并 merge
 
@@ -88,11 +70,7 @@ git commit --amend --no-edit
 
 合并适合新功能的添加。
 
-
-
 ### Pull Request
-
-
 
 ## Git Stash
 
@@ -103,10 +81,6 @@ git commit --amend --no-edit
 ## 回退/重置 Reset
 
 `git reset`
-
-
-
-
 
 ## 远程 Remote
 
@@ -152,56 +126,38 @@ pb	https://github.com/paulboone/ticgit (push)
 
 `git fetch <remote> [remote_branch]:[local_branch]`
 
-
-
 ### 根据远程分支创建本地分支
 
 `git checkout -b <local_branch> <remote>/<remote_branch>`
-
-
 
 ### 拉取
 
 `git pull <remote> <remote_branch>:<local_branch>`
 
-
-
-### 推送 
+### 推送
 
 `git push [-options] <remote> <remote_branch>` 本地和远程同名
 
 `git push [-options] <remote> <local_branch>:<remote_branch>` 本地和远程不同名
 
-
-
 ```powershell
 git push -u origin my-dev:dev
 ```
 
-
-
-**选项 Options** 
+**选项 Options**
 
 `-f` : 强制推送，有时推送的提交树和远程分支冲突，可以强制推送，但是很危险的操作。
 
-`-u` : 把当前分支与要推送的远程分支关联起来，下一次直接使用 `git push` 就可以推送到关联的远程分支  
-
-
-
-
+`-u` : 把当前分支与要推送的远程分支关联起来，下一次直接使用 `git push` 就可以推送到关联的远程分支
 
 ### 根据远程回退 Remote Reset
 
 git fetch --all
 git reset --hard origin/master (这里 master 要修改为对应的分支名)
 
-
-
 ## 标签 Tag
 
 `git tag`
-
-
 
 ## 配置 Config
 
@@ -236,10 +192,6 @@ git config --global https.proxy 'http://127.0.0.1:7890'
 
 ## 案例
 
-### 分支命名
-
-`main`, `dev` , `feat/xxx`, `fix/xxx`
-
 ### 多人合作流程案例1
 
 1. 在 dev 分支基础上创建自己的分支 `feat/my-branch`
@@ -256,16 +208,6 @@ C:/user/%User%/.bash_history
 
 ### 提交签名验证 Commit Signature Verification
 
-Github 提交会有都有`Verfied`标签
+Github 提交会有都有 `Verfied`标签
 
 `Verified`标签表示，这个commit确实是commiter本人所为
-
-
-
-
-
-
-
-
-
- 
