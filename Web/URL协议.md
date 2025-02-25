@@ -4,8 +4,7 @@
 
 ## HTTP/HTTPS
 
-## 自定义URL协议
-
+## 自定义 URL 协议
 
 vscode://file/{full path to file}:line:column
 
@@ -29,7 +28,7 @@ vscode://file/{full path to file}:line:column
 你
 
 User
-用url协议的方式直接打开用户本地软件比如打开vscode可以使用 `<a href="vscode://file/{full path to file}:line:column">`Open the file `</a>`这是什么技术
+用 url 协议的方式直接打开用户本地软件比如打开 vscode 可以使用 `<a href="vscode://file/{full path to file}:line:column">`Open the file `</a>`这是什么技术
 
 ChatGPT
 

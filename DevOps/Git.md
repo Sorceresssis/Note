@@ -82,6 +82,10 @@ git commit --amend --no-edit
 
 `git reset`
 
+
+
+git reset --hard origin/feat/zq_cust_claim
+
 ## 远程 Remote
 
 ### 查看远程仓库
