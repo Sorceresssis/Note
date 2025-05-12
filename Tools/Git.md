@@ -48,7 +48,7 @@ git commit --amend --no-edit
 
 `-d` : 删除
 
-----orphan 创建一个干净的分支， 默认的是基于当前分支来传教，作为 基础(base), 后面会有rebase 操作。
+----orphan 创建一个干净的分支， 默认的是基于当前分支来传教，作为 基础(base), 后面会有 rebase 操作。
 
 ### 切换分支 checkout
 
@@ -81,8 +81,6 @@ git commit --amend --no-edit
 ## 回退/重置 Reset
 
 `git reset`
-
-
 
 git reset --hard origin/feat/zq_cust_claim
 
@@ -124,6 +122,14 @@ origin	https://github.com/schacon/ticgit (fetch)
 origin	https://github.com/schacon/ticgit (push)
 pb	https://github.com/paulboone/ticgit (fetch)
 pb	https://github.com/paulboone/ticgit (push)
+```
+
+### 修改远程仓库的地址
+
+`git remote set-url <shortname> <url>`
+
+```
+git remote set-url origin https://github.com/
 ```
 
 ### 从远程仓库中获得数据
@@ -196,7 +202,7 @@ git config --global https.proxy 'http://127.0.0.1:7890'
 
 ## 案例
 
-### 多人合作流程案例1
+### 多人合作流程案例 1
 
 1. 在 dev 分支基础上创建自己的分支 `feat/my-branch`
 2. rebase dev 分支更的新代码。解决 rebase 冲突
@@ -214,4 +220,4 @@ C:/user/%User%/.bash_history
 
 Github 提交会有都有 `Verfied`标签
 
-`Verified`标签表示，这个commit确实是commiter本人所为
+`Verified`标签表示，这个 commit 确实是 commiter 本人所为

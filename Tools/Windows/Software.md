@@ -123,6 +123,14 @@ Windows10 系统自带。
 
 PowerShell 7 是专为云、本地和混合环境设计的，它包含增强功能和新功能。可以和 PowerShell5.1 并存。比 PowerShell5 好用。
 
+保存位置
+
+```
+%USERPROFILE%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine
+
+地址下的ConsoleHost_history.txt
+```
+
 > 安装
 
 ```powershell
