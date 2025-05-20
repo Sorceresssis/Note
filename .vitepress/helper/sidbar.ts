@@ -46,6 +46,7 @@ export async function getSidebarItem(docRoot: string, fullPath: string): Promise
             return !entry.startsWith('index')
                 && !entry.startsWith('.')
                 && !entry.startsWith('assets')
+                && !entry.startsWith('image')
         }).map(async entry => getSidebarItem(docRoot, path.join(fullPath, entry))))
         ).filter(item => item !== void 0)
 

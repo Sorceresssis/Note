@@ -1,4 +1,6 @@
-# 二进制文件输入输出
+# C++ 基础语法
+
+## 二进制文件输入输出
 
 ```cpp
 #include <iostream>
@@ -40,7 +42,7 @@ int main(int argc, char* argv[]) {
 
 # const
 
-> const修饰指针 const修饰右边的东西。
+> const 修饰指针 const 修饰右边的东西。
 
 ```cpp
 const int* p = &a;  //p指向一个const修饰的常量;
@@ -97,7 +99,7 @@ int* fun() {
 
 ---
 
-# new函数
+# new 函数
 
 ```cpp
 int* a = new int(10);   //初始化为10
@@ -114,7 +116,7 @@ void operator delete(void* t){
 
 # 引用
 
-> 引用本质是一个常量指针。type* const refer
+> 引用本质是一个常量指针。type\* const refer
 > 引用必须初始化；
 > 引用不可更改
 
@@ -137,7 +139,7 @@ int main(int argc, char* argv[]) {
 
 ---
 
-# enum枚举
+# enum 枚举
 
 ```cpp
 enum Color//颜色
@@ -153,7 +155,7 @@ clr = 4;
 
 ---
 
-# union联合
+# union 联合
 
 ```cpp
 union Un
@@ -217,7 +219,7 @@ Person damo1 = damo0;
 Person damo2(damo0);
 ```
 
-> 编译器自动给class提供的函数
+> 编译器自动给 class 提供的函数
 
 ```cpp
 /*
@@ -281,7 +283,7 @@ Person(const Person& T){
 a.fun().fun().fun();    //链式编程的样式.
 //原理
 person& func{
-  
+
     return *this;
 }
 ```
@@ -309,7 +311,7 @@ p->func1;   //报错,因为this指针为空。
 if(this == NULL) {
     cout << "this is nullptr" << endl;
     return;
-} 
+}
 
 ```
 
@@ -475,7 +477,7 @@ class a 被保存了两份
 */
 ```
 
-> 用虚继承  b, c就成为了虚基类
+> 用虚继承 b, c 就成为了虚基类
 
 ```cpp
 class a{
@@ -509,16 +511,16 @@ d::vbtable c:
 d damo;
 sizeof(damo) == 3 * 8 = 24
 ```
-![1668952071385](image/C++/1668952071385.png)
 
+![1668952071385](image/C++/1668952071385.png)
 
 ---
 
 # 多态
 
-###  虚函数
+### 虚函数
 
-* 多态是靠指针或是引用来实现。类对象无法实现多态。
+-   多态是靠指针或是引用来实现。类对象无法实现多态。
 
 ```cpp
 //静态多态:在编译时绑定函数地址 早绑定
@@ -548,7 +550,7 @@ void test(){
 /*
 +---(class Animal)
 | (vfptr : virtual fouction ptr)
-| 
+|
 | +---Animal::vftable
 | |void Animal::speak()
 | +---
@@ -558,7 +560,7 @@ void test(){
 | +---(base class Animal)
 | |(vfptr : virtual fouction ptr)
 | +---
-| 
+|
 | +---Cat::vftable()
 | | void Cat::speak()
 | +---
@@ -568,7 +570,7 @@ void test(){
 
 ---
 
-### 纯虚函数 & 抽象类 abstractclass 
+### 纯虚函数 & 抽象类 abstractclass
 
 1. 抽象类就是需要纯虚函数类的父类，把子的共同点抽象出来。
 
@@ -596,7 +598,7 @@ public:
 void test()
 {
  /*
- Base B;  无法实体化 
+ Base B;  无法实体化
  new Base; 无法实体化
  */
 }
@@ -606,9 +608,9 @@ void test()
 
 > virtual 关键字总结
 
-从菱形继承，多态得出virtual(虚)原理就是用virtual ptr实现不同的功能。
+从菱形继承，多态得出 virtual(虚)原理就是用 virtual ptr 实现不同的功能。
 
-# Lambda表达式/匿名函数
+# Lambda 表达式/匿名函数
 
 ```cpp
 int f = [捕获列表](参数列表) mutable throw() ->int
