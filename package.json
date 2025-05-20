@@ -6,7 +6,7 @@
   "scripts": {
     "vp:dev": "vitepress dev --host",
     "vp:build": "vitepress build",
-    "vp:preview": "vitepress preview",
+    "vp:preview": "vitepress preview"
   },
   "dependencies": {
     "gray-matter": "^4.0.3"
