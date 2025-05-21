@@ -1,8 +1,9 @@
 {
   "devDependencies": {
     "@types/node": "^22.15.18",
-    "vitepress": "^1.6.3",
-    "gray-matter": "^4.0.3"
+    "gray-matter": "^4.0.3",
+    "typescript": "^5.8.3",
+    "vitepress": "^1.6.3"
   },
   "scripts": {
     "vp:dev": "vitepress dev --host",

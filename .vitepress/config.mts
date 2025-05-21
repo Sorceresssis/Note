@@ -1,58 +1,13 @@
 import { defineConfig } from 'vitepress'
 import path from 'node:path'
 import fs from 'node:fs'
-import { getSidebarItem, findFirstLink, type SidebarItem } from './helper/sidbar'
-import { docRoot } from './constant'
+import { getSidebarItem, findFirstLink } from './helper/sidbar'
+import { docRoot, workspaces, navTree } from './constant'
 import { genHomeIndex } from './helper/home_page'
 
-enum WorkspaceDir {
-  FRONTEND = 'Frontend',
-  BACKEND = 'Backend',
-  LANGUAGE = 'Language',
-  TOOLS = 'Tools',
-}
-
-type workspace = {
-  label: string
-  dir: WorkspaceDir
-}
-
-const workspaces: workspace[] = [
-  { label: '工具', dir: WorkspaceDir.TOOLS },
-  { label: '前端', dir: WorkspaceDir.FRONTEND },
-  { label: '后端', dir: WorkspaceDir.BACKEND },
-  { label: '语言', dir: WorkspaceDir.LANGUAGE },
-]
-
-type NavTreeItem = {
-  label: string
-  type: 'children' | 'link',
-  workspaces: WorkspaceDir[]
-}
-
-const navTree: NavTreeItem[] = [
-  {
-    label: 'Web',
-    type: 'children',
-    workspaces: [
-      WorkspaceDir.FRONTEND,
-      WorkspaceDir.BACKEND,
-    ]
-  },
-  {
-    label: '工具',
-    type: 'link',
-    workspaces: [WorkspaceDir.TOOLS]
-  }
-]
-
-type workspaceResolved = workspace & {
-  sidebar: SidebarItem
-  entryLink: string
-}
 
 export default async () => {
-  const workspaceResolveds: workspaceResolved[] = await Promise.all(workspaces.map(async ws => {
+  const workspaceResolveds: VPC.WorkspaceResolved[] = await Promise.all(workspaces.map(async ws => {
     const sidebar = (await getSidebarItem(docRoot, path.join(docRoot, ws.dir)))!
     return {
       label: sidebar.isFrontmatter ? sidebar.text : ws.label,
@@ -61,21 +16,22 @@ export default async () => {
       entryLink: findFirstLink(sidebar) || '/',
     }
   }))
-  genHomeIndex(workspaceResolveds)
+
+  await genHomeIndex(workspaceResolveds)
 
   const sidebarMulti = workspaceResolveds.reduce((acc, ws) => {
     acc[ws.dir] = ws.sidebar.items
     return acc
-  }, {})
+  }, {} as Record<string, VPC.SidebarItem[]>)
 
   const nav = navTree.map(item => {
     if (item.type === 'link') {
-      if (item.workspaces.length !== 1) {
-        throw new Error(`For navItem of type link, the length of its workspace must be 1, but got ${item.workspaces.length} in ${item.label}`)
+      if (item.workspaceDirs.length !== 1) {
+        throw new Error(`For navItem of type link, the length of its workspace must be 1, but got ${item.workspaceDirs.length} in ${item.label}`)
       }
-      const wsr = workspaceResolveds.find(ws => ws.dir === item.workspaces[0])
+      const wsr = workspaceResolveds.find(ws => ws.dir === item.workspaceDirs[0])
       if (!wsr) {
-        throw new Error(`Cannot find workspace ${item.workspaces[0]} in ${item.label}`)
+        throw new Error(`Cannot find workspace ${item.workspaceDirs[0]} in ${item.label}`)
       }
 
       return {
@@ -87,7 +43,7 @@ export default async () => {
     if (item.type === 'children') {
       return {
         text: item.label,
-        items: item.workspaces.map(wsDir => {
+        items: item.workspaceDirs.map(wsDir => {
           const wsr = workspaceResolveds.find(ws => ws.dir === wsDir)
           if (!wsr) {
             throw new Error(`Cannot find workspace ${wsDir} in ${item.label}`)
@@ -105,7 +61,7 @@ export default async () => {
 
   return defineConfig({
     title: "Sorceress's Note",
-    description: '学习笔记',
+    description: 'A note for sorceress',
     head: [
       ['link', { rel: 'icon', type: 'image/x-icon', href: '/Note/favicon.ico' }],
       ['meta', { property: 'og:type', content: 'website' }],
