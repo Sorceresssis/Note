@@ -1,14 +1,12 @@
 {
   "devDependencies": {
     "@types/node": "^22.15.18",
-    "vitepress": "^1.6.3"
+    "vitepress": "^1.6.3",
+    "gray-matter": "^4.0.3"
   },
   "scripts": {
     "vp:dev": "vitepress dev --host",
     "vp:build": "vitepress build",
     "vp:preview": "vitepress preview"
-  },
-  "dependencies": {
-    "gray-matter": "^4.0.3"
   }
 }

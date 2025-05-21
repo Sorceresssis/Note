@@ -1,88 +1,131 @@
 import { defineConfig } from 'vitepress'
 import path from 'node:path'
 import fs from 'node:fs'
-import { getSidebarItem, type SidebarItem } from './helper/sidbar'
+import { getSidebarItem, findFirstLink, type SidebarItem } from './helper/sidbar'
+import { docRoot } from './constant'
+import { genHomeIndex } from './helper/home_page'
 
-const docRoot = path.resolve(__dirname, '..')
-const groups = [
+enum WorkspaceDir {
+  FRONTEND = 'Frontend',
+  BACKEND = 'Backend',
+  LANGUAGE = 'Language',
+  TOOLS = 'Tools',
+}
+
+type workspace = {
+  label: string
+  dir: WorkspaceDir
+}
+
+const workspaces: workspace[] = [
+  { label: '工具', dir: WorkspaceDir.TOOLS },
+  { label: '前端', dir: WorkspaceDir.FRONTEND },
+  { label: '后端', dir: WorkspaceDir.BACKEND },
+  { label: '语言', dir: WorkspaceDir.LANGUAGE },
+]
+
+type NavTreeItem = {
+  label: string
+  type: 'children' | 'link',
+  workspaces: WorkspaceDir[]
+}
+
+const navTree: NavTreeItem[] = [
   {
-    text: 'Web',
-    workerspaces: [
-      { text: '前端', dir: 'Frontend' },
-      { text: '后端', dir: 'Backend' },
-      { text: '工具', dir: 'Tools' },
-      { text: 'Language', dir: 'Language' },
-      { text: '平台', dir: 'Platforms' },
+    label: 'Web',
+    type: 'children',
+    workspaces: [
+      WorkspaceDir.FRONTEND,
+      WorkspaceDir.BACKEND,
     ]
+  },
+  {
+    label: '工具',
+    type: 'link',
+    workspaces: [WorkspaceDir.TOOLS]
   }
 ]
 
-function findFirstLink(sidebarItem: SidebarItem) {
-  if (!sidebarItem) {
-    return '/'
-  }
-
-  if (sidebarItem.link) return sidebarItem.link
-
-  for (const item of sidebarItem.items) {
-    const link = findFirstLink(item)
-    if (link) {
-      return link
-    }
-  }
+type workspaceResolved = workspace & {
+  sidebar: SidebarItem
+  entryLink: string
 }
 
-
-
 export default async () => {
-  const workerspaces = await Promise.all(
-    groups.flatMap(g => g.workerspaces).map(async ws => ({
+  const workspaceResolveds: workspaceResolved[] = await Promise.all(workspaces.map(async ws => {
+    const sidebar = (await getSidebarItem(docRoot, path.join(docRoot, ws.dir)))!
+    return {
+      label: sidebar.isFrontmatter ? sidebar.text : ws.label,
       dir: ws.dir,
-      text: ws.text,
-      sidebar: await getSidebarItem(docRoot, path.join(docRoot, ws.dir))
-    }))
-  )
+      sidebar,
+      entryLink: findFirstLink(sidebar) || '/',
+    }
+  }))
+  genHomeIndex(workspaceResolveds)
 
-  const sidebar = workerspaces.reduce((acc, item) => {
-    acc[item.dir] = item.sidebar
+  const sidebarMulti = workspaceResolveds.reduce((acc, ws) => {
+    acc[ws.dir] = ws.sidebar.items
     return acc
   }, {})
 
-  const nav = groups.map(group => ({
-    text: group.text,
-    items: group.workerspaces.map(ws => ({
-      text: ws.text,
-      link: findFirstLink(sidebar[ws.dir]) || '/',
-    }))
-  }))
+  const nav = navTree.map(item => {
+    if (item.type === 'link') {
+      if (item.workspaces.length !== 1) {
+        throw new Error(`For navItem of type link, the length of its workspace must be 1, but got ${item.workspaces.length} in ${item.label}`)
+      }
+      const wsr = workspaceResolveds.find(ws => ws.dir === item.workspaces[0])
+      if (!wsr) {
+        throw new Error(`Cannot find workspace ${item.workspaces[0]} in ${item.label}`)
+      }
+
+      return {
+        text: wsr.sidebar.isFrontmatter ? wsr.label : item.label,
+        link: wsr.entryLink,
+      }
+    }
+
+    if (item.type === 'children') {
+      return {
+        text: item.label,
+        items: item.workspaces.map(wsDir => {
+          const wsr = workspaceResolveds.find(ws => ws.dir === wsDir)
+          if (!wsr) {
+            throw new Error(`Cannot find workspace ${wsDir} in ${item.label}`)
+          }
+          return {
+            text: wsr.label,
+            link: wsr.entryLink,
+          }
+        })
+      }
+    }
+
+    throw new Error(`Unknown navItem type ${item.type} in ${item.label}`)
+  })
 
   return defineConfig({
     title: "Sorceress's Note",
     description: '学习笔记',
-    base: '/Note',
     head: [
       ['link', { rel: 'icon', type: 'image/x-icon', href: '/Note/favicon.ico' }],
       ['meta', { property: 'og:type', content: 'website' }],
       ['meta', { property: 'og:site_name', content: 'Sorceress\'s Note' }],
     ],
     lang: 'zh-CN',
+    base: '/Note',
     themeConfig: {
-      search: {
-        provider: 'local'
-      },
+      search: { provider: 'local' },
       nav,
-      sidebar,
+      sidebar: sidebarMulti,
       socialLinks: [
         { icon: 'github', link: 'https://github.com/Sorceresssis/Note' }
       ]
     },
     ignoreDeadLinks: true,
     markdown: {
-      image: {
-        lazyLoading: true
-      },
+      image: { lazyLoading: true },
       config: (md) => {
-        md.set({ html: false }) // 禁用所有 HTML 标签解析
+        md.set({ html: false })
       },
       languageAlias: {
         'svg': 'html',
@@ -102,7 +145,6 @@ export default async () => {
             const replaced = code.replace(imageRegex, (match, alt, src) => {
               const resolvedPath = path.resolve(path.dirname(id), src);
               if (!fs.existsSync(resolvedPath)) {
-                // 替换为 fallback 图像（放在 .vitepress/public/image/image-not-found.png）
                 return `![${alt}](/image/404.svg)`;
               }
               return match;

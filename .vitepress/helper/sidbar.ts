@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 
 export interface SidebarItem {
     text: string,
+    isFrontmatter: boolean,
     collapsed?: boolean,
     items: SidebarItem[],
     link?: string,
@@ -13,7 +14,6 @@ export interface SidebarItem {
 interface Frontmatter {
     title: string,
     text: string,
-
 }
 
 async function parseFrontmatter(filePath: string) {
@@ -35,6 +35,7 @@ export async function getSidebarItem(docRoot: string, fullPath: string): Promise
         const f = await parseFrontmatter(fullPath)
         return {
             text: f.text ?? path.basename(fullPath, '.md'),
+            isFrontmatter: Boolean(f.text),
             link: `/${path.relative(docRoot, fullPath).replace(/\\/g, '/')}`,
         } as SidebarItem
     }
@@ -52,6 +53,7 @@ export async function getSidebarItem(docRoot: string, fullPath: string): Promise
 
         const item: SidebarItem = {
             text: path.basename(fullPath),
+            isFrontmatter: false,
             collapsed: false,
             items
         }
@@ -61,10 +63,23 @@ export async function getSidebarItem(docRoot: string, fullPath: string): Promise
             const f = await parseFrontmatter(indexPath)
             if (f.text) {
                 item.text = f.text
+                item.isFrontmatter = true
             }
             item.link = `/${path.relative(docRoot, fullPath).replace(/\\/g, '/')}`
         }
 
         return item
+    }
+}
+
+
+export function findFirstLink(sidebarItem: SidebarItem): string | void {
+    if (sidebarItem.link) return sidebarItem.link
+
+    for (const item of sidebarItem.items) {
+        const link = findFirstLink(item)
+        if (link) {
+            return link
+        }
     }
 }
