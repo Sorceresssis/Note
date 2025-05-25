@@ -69,17 +69,19 @@ export default async () => {
     ],
     lang: 'zh-CN',
     base: '/Note',
+    ignoreDeadLinks: true,
     themeConfig: {
       search: { provider: 'local' },
-      nav,
-      sidebar: sidebarMulti,
       socialLinks: [
         { icon: 'github', link: 'https://github.com/Sorceresssis/Note' }
-      ]
+      ],
+      nav,
+      sidebar: sidebarMulti,
+      outline: 'deep',
     },
-    ignoreDeadLinks: true,
     markdown: {
       image: { lazyLoading: true },
+      lineNumbers: true,
       config: (md) => {
         md.set({ html: false })
       },

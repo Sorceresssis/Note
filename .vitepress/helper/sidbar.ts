@@ -3,6 +3,8 @@ import path from 'node:path'
 import matter from 'gray-matter'
 
 
+const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
+
 interface Frontmatter {
     title: string,
     text: string,
@@ -12,7 +14,7 @@ async function parseFrontmatter(filePath: string) {
     const fullPath = path.resolve(filePath)
     const content = await fs.promises.readFile(fullPath, 'utf-8')
 
-    const {data} = matter(content)
+    const { data } = matter(content)
     const frontmatter: Frontmatter = data as Frontmatter
 
     return frontmatter
@@ -35,13 +37,16 @@ export async function getSidebarItem(docRoot: string, fullPath: string): Promise
 
     if (stat.isDirectory()) {
         const entries = await fs.promises.readdir(fullPath)
-        const items = (await Promise.all(entries.filter(entry => {
+        const items = (await Promise.all(entries
+            .filter(entry => {
                 return !entry.startsWith('index')
                     && !entry.startsWith('.')
                     && !entry.startsWith('assets')
                     && !entry.startsWith('image')
-            }).map(async entry => getSidebarItem(docRoot, path.join(fullPath, entry))))
-        ).filter(item => item !== void 0) as VPC.SidebarItem[]
+            })
+            .sort(((a, b) => collator.compare(a, b)))
+            .map(async entry => getSidebarItem(docRoot, path.join(fullPath, entry)))))
+            .filter(item => item !== void 0) as VPC.SidebarItem[]
 
         const item: VPC.SidebarItem = {
             text: path.basename(fullPath),

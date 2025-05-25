@@ -4,17 +4,21 @@ export const docRoot = path.resolve(__dirname, '..')
 
 
 enum WorkspaceDir {
-    FRONTEND = 'Frontend',
-    BACKEND = 'Backend',
-    LANGUAGE = 'Language',
     TOOLS = 'Tools',
+    COMPUTER_NETWORK = '1_ComputerNetwork',
+    BACKEND = '9_Backend',
+    FRONTEND = '10_Frontend',
+    INTERVIEW = '100_Interview',
+    LIFE = '105_Life'
 }
 
 export const workspaces: VPC.Workspace[] = [
     { label: '工具', dir: WorkspaceDir.TOOLS },
     { label: '前端', dir: WorkspaceDir.FRONTEND },
     { label: '后端', dir: WorkspaceDir.BACKEND },
-    { label: '语言', dir: WorkspaceDir.LANGUAGE },
+    { label: '计算机网络', dir: WorkspaceDir.COMPUTER_NETWORK },
+    { label: '面试', dir: WorkspaceDir.INTERVIEW },
+    { label: '生活', dir: WorkspaceDir.LIFE },
 ]
 
 export const navTree: VPC.NavTreeItem[] = [
@@ -30,5 +34,12 @@ export const navTree: VPC.NavTreeItem[] = [
         label: '工具',
         type: 'link',
         workspaceDirs: [WorkspaceDir.TOOLS]
+    },
+    {
+        label: '基础知识',
+        type: 'children',
+        workspaceDirs: [
+            WorkspaceDir.COMPUTER_NETWORK
+        ]
     }
 ]
