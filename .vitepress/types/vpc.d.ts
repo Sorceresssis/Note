@@ -3,7 +3,7 @@ declare namespace VPC {
         text: string,
         isFrontmatter: boolean,
         collapsed?: boolean,
-        items: VPC.SidebarItem[],
+        items?: VPC.SidebarItem[],
         link?: string,
     }
 

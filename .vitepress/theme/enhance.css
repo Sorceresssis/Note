@@ -18,6 +18,11 @@ h5 {
   counter-reset: h6counter;
 }
 
+h6 {
+  counter-reset: h7counter;
+}
+
+
 h2::before {
   counter-increment: h2counter;
   content: counter(h2counter) ". " !important;

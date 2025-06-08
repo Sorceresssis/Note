@@ -4,6 +4,7 @@ import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import './style.css'
 import './enhance.css'
+import './reader-adapt.css'
 
 export default {
   extends: DefaultTheme,
