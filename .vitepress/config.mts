@@ -20,7 +20,7 @@ export default async () => {
   await genHomeIndex(workspaceResolveds)
 
   const sidebarMulti = workspaceResolveds.reduce((acc, ws) => {
-    acc[ws.dir] = ws.sidebar.items
+    acc[ws.dir] = ws.sidebar.items!
     return acc
   }, {} as Record<string, VPC.SidebarItem[]>)
 

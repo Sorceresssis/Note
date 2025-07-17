@@ -4,15 +4,23 @@ export const docRoot = path.resolve(__dirname, '..')
 
 
 enum WorkspaceDir {
-    TOOLS = 'Tools',
+    L10_JAVASCRIPT = 'L10_JavaScript',
+    L11_PYTHON = 'L11_Python',
+
+    TOOLS = '30_Tools',
     COMPUTER_NETWORK = '1_ComputerNetwork',
     BACKEND = '9_Backend',
     FRONTEND = '10_Frontend',
     INTERVIEW = '100_Interview',
-    LIFE = '105_Life'
+    LIFE = '105_Life',
+
+
+
 }
 
 export const workspaces: VPC.Workspace[] = [
+    { label: 'JavaScript', dir: WorkspaceDir.L10_JAVASCRIPT },
+    { label: 'Python', dir: WorkspaceDir.L11_PYTHON },
     { label: '工具', dir: WorkspaceDir.TOOLS },
     { label: '前端', dir: WorkspaceDir.FRONTEND },
     { label: '后端', dir: WorkspaceDir.BACKEND },
@@ -22,6 +30,14 @@ export const workspaces: VPC.Workspace[] = [
 ]
 
 export const navTree: VPC.NavTreeItem[] = [
+    {
+        label: 'Language',
+        type: 'children',
+        workspaceDirs: [
+            WorkspaceDir.L10_JAVASCRIPT,
+            WorkspaceDir.L11_PYTHON
+        ]
+    },
     {
         label: 'Web',
         type: 'children',
