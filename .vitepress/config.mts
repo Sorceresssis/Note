@@ -1,10 +1,13 @@
 import { defineConfig } from 'vitepress'
 import path from 'node:path'
-import fs from 'node:fs'
 import { getSidebarItem, findFirstLink } from './helper/sidbar'
-import { docRoot, workspaces, navTree } from './constant'
+import { workspaces, navTree } from './constant'
 import { genHomeIndex } from './helper/home_page'
+import { useMarkdownNumbering } from './plugins/markdown-numbering'
+import { viteMarkdownImage } from './plugins/vite-markdown-image'
 
+
+const docRoot = path.resolve(__dirname, '..')
 
 export default async () => {
   const workspaceResolveds: VPC.WorkspaceResolved[] = await Promise.all(workspaces.map(async ws => {
@@ -17,7 +20,7 @@ export default async () => {
     }
   }))
 
-  await genHomeIndex(workspaceResolveds)
+  await genHomeIndex(docRoot, workspaceResolveds)
 
   const sidebarMulti = workspaceResolveds.reduce((acc, ws) => {
     acc[ws.dir] = ws.sidebar.items!
@@ -84,6 +87,7 @@ export default async () => {
       lineNumbers: true,
       config: (md) => {
         md.set({ html: false })
+        useMarkdownNumbering(md)
       },
       languageAlias: {
         'svg': 'html',
@@ -92,25 +96,7 @@ export default async () => {
     },
     vite: {
       plugins: [
-        {
-          name: 'markdown-image-fallback',
-          enforce: 'pre',
-          transform(code, id) {
-            if (!id.endsWith('.md')) return;
-
-            const imageRegex = /!\[(.*?)\]\((.*?)\)/g;
-
-            const replaced = code.replace(imageRegex, (match, alt, src) => {
-              const resolvedPath = path.resolve(path.dirname(id), src);
-              if (!fs.existsSync(resolvedPath)) {
-                return `![${alt}](/image/404.svg)`;
-              }
-              return match;
-            });
-
-            return replaced;
-          }
-        }
+        viteMarkdownImage()
       ]
     }
   })

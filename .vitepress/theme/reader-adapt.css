@@ -1,104 +1,16 @@
-/* *** READER ***
-    Office Viewer(Markdown Editor) | VScode Extension
-*/
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.VPDoc h2,
+.VPDoc h3,
+.VPDoc h4,
+.VPDoc h5,
+.VPDoc h6 {
   display: flex;
-  align-items: baseline;
+  align-items: center;
 }
 
-/* *** READER ***
-    Markdown Reader | Browser Plugin
-*/
-
-/* WORK: Adapt auto-number-headers.css */
-
-.mdr .mdr__markdown-content {
-  max-width: none !important;
+.heading-number {
+  user-select: none;
+  margin-right: 0.3em;
 }
-
-.mdr h2,
-.mdr h3,
-.mdr h4,
-.mdr h5,
-.mdr h6 {
-  display: flex;
-  align-items: baseline;
-}
-
-.mdr h2::before,
-.mdr h3::before,
-.mdr h4::before,
-.mdr h5::before,
-.mdr h6::before {
-  padding-right: 6px;
-}
-
-/* WORK: Side navigation bar automatic numbering */
-.mdr-side-nav {
-  counter-reset: h2counter;
-}
-
-.mdr-side-nav .head-h2 {
-  counter-reset: h3counter;
-}
-
-.mdr-side-nav .head-h3 {
-  counter-reset: h4counter;
-}
-
-.mdr-side-nav .head-h4 {
-  counter-reset: h5counter;
-}
-
-.mdr-side-nav .head-h5 {
-  counter-reset: h6counter;
-}
-
-.mdr-side-nav .head-h2>a::before {
-  counter-increment: h2counter;
-  content: counter(h2counter) ". " !important;
-}
-
-.mdr-side-nav .head-h3>a::before {
-  counter-increment: h3counter;
-  content: counter(h2counter) "."
-    counter(h3counter) ". " !important;
-}
-
-.mdr-side-nav .head-h4>a::before {
-  counter-increment: h4counter;
-  content: counter(h2counter) "."
-    counter(h3counter) "."
-    counter(h4counter) ". " !important;
-}
-
-.mdr-side-nav .head-h5>a::before {
-  counter-increment: h5counter;
-  content: counter(h2counter) "."
-    counter(h3counter) "."
-    counter(h4counter) "."
-    counter(h5counter) ". " !important;
-}
-
-.mdr-side-nav .head-h6>a::before {
-  counter-increment: h6counter;
-  content: counter(h2counter) "."
-    counter(h3counter) "."
-    counter(h4counter) "."
-    counter(h5counter) "."
-    counter(h6counter) ". " !important;
-}
-
-
-/* *** READER ***
-    vitepress default theme
-*/
 
 .VPDocOutline ul {
   counter-reset: section;

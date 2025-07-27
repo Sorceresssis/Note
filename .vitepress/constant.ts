@@ -1,6 +1,4 @@
-import path from 'path'
-
-export const docRoot = path.resolve(__dirname, '..')
+export const REPOSITORY = 'https://github.com/Sorceresssis/Note'
 
 
 enum WorkspaceDir {

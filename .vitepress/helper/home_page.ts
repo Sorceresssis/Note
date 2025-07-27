@@ -1,9 +1,8 @@
 import fs from 'node:fs'
-import { docRoot } from '../constant'
 
 
 
-export async function genHomeIndex(wsrs: VPC.WorkspaceResolved[]): Promise<void> {
+export async function genHomeIndex(docRoot: string, wsrs: VPC.WorkspaceResolved[]): Promise<void> {
     const indexPath = `${docRoot}/index.md`
     await fs.promises.writeFile(indexPath,
         `---

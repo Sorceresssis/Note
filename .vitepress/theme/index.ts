@@ -2,9 +2,10 @@
 import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import './style.css'
+import './global.css'
 import './enhance.css'
 import './reader-adapt.css'
+import copyEnhancer from './copy-enhancer'
 
 export default {
   extends: DefaultTheme,
@@ -13,7 +14,7 @@ export default {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
     })
   },
-  enhanceApp({ app, router, siteData }) {
-    // ...
+  enhanceApp(ctx) {
+    copyEnhancer()
   }
 } satisfies Theme
