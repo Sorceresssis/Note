@@ -74,6 +74,7 @@ export default async () => {
     base: '/Note',
     ignoreDeadLinks: true,
     themeConfig: {
+      logo: '/logo.png',
       search: { provider: 'local' },
       socialLinks: [
         { icon: 'github', link: 'https://github.com/Sorceresssis/Note' }
@@ -83,6 +84,7 @@ export default async () => {
       outline: 'deep',
     },
     markdown: {
+      math: true,
       image: { lazyLoading: true },
       lineNumbers: true,
       config: (md) => {

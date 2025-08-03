@@ -1,10 +1,3 @@
-平台
+# NOTE
 
-Note ， husky, lint-staged
-
-Java 平台
-Python 平台
-
--   Frontend
--   Backend
--   Database
+随便记点东西啦~

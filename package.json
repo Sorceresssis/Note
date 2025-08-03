@@ -3,6 +3,7 @@
     "@types/lodash": "^4.17.17",
     "@types/node": "^22.15.18",
     "gray-matter": "^4.0.3",
+    "markdown-it-mathjax3": "^4.3.2",
     "typescript": "^5.8.3",
     "vitepress": "^1.6.3"
   },
