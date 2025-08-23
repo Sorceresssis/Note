@@ -69,6 +69,7 @@ export default async () => {
       ['link', { rel: 'icon', type: 'image/x-icon', href: '/Note/favicon.ico' }],
       ['meta', { property: 'og:type', content: 'website' }],
       ['meta', { property: 'og:site_name', content: 'Sorceress\'s Note' }],
+      ['meta', { name: 'google-site-verification', content: 'EbkZ0BRPgPljhAykPUNHc9dt6DtvljJxVizkeFa9N-Q' }],
     ],
     lang: 'zh-CN',
     base: '/Note',

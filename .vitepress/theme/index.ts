@@ -5,7 +5,6 @@ import DefaultTheme from 'vitepress/theme'
 import './global.css'
 import './enhance.css'
 import './reader-adapt.css'
-import copyEnhancer from './copy-enhancer'
 
 export default {
   extends: DefaultTheme,
@@ -15,6 +14,5 @@ export default {
     })
   },
   enhanceApp(ctx) {
-    copyEnhancer()
   }
 } satisfies Theme
